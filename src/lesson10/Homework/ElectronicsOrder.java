@@ -23,7 +23,7 @@ public class ElectronicsOrder extends Order {
                 if (city.equals(getShipToCity())) {
                     if (getBasePrice() >= 100) {
                         if (getCustomerOwned().getGender().equals("Женский"))
-                            confirmShipping();
+                            setDateConfirmed(new Date());
                     }
 
                 }
@@ -33,6 +33,18 @@ public class ElectronicsOrder extends Order {
 
     @Override
     void calculatePrice() {
+        double deliveryPrice;
+        if (!(getShipToCity().equals("Киев") || getShipToCity().equals("Одесса")))
+            deliveryPrice = 0.15 * getBasePrice();
+        else deliveryPrice = 0.15 * getBasePrice();
+
+        if (getBasePrice() > 1000) {
+            setTotalPrice(deliveryPrice + getBasePrice() * 0.95);
+        }
+        setTotalPrice(getBasePrice() + deliveryPrice);
 
     }
+
+
 }
+
