@@ -16,13 +16,14 @@ public class ElectronicsOrder extends Order {
 
     @Override
     void validateOrder() {
+        boolean b = false;
         String[] cities = new String[]{"Kiev", "Odessa", "Dnieper", "Kharkiv"};
         for (String city : cities) {
             if (city.equals(getShipFromCity())) {
                 if (city.equals(getShipToCity())) {
                     if (getBasePrice() >= 100) {
                         if (getCustomerOwned().getGender().equals("Woman"))
-                            break;
+                            b = true;
                     }
 
                 }
