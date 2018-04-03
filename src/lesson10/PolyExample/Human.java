@@ -1,0 +1,19 @@
+package lesson10.PolyExample;
+
+/**
+ * Created by Ruslan on 26.03.2018.
+ */
+public class Human {
+    private String name;
+
+    public Human(String name) {
+        this.name = name;
+    }
+
+    void run() {
+        System.out.println("Human class is called...");
+        System.out.println(name + " is running");
+    }
+
+
+}
