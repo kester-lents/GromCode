@@ -32,11 +32,11 @@ public class FurnitureOrder extends Order {
     @Override
     void calculatePrice() {
         double deliveryPrice;
-        if (getBasePrice() < 5000)
-            deliveryPrice = getBasePrice() * 0.95;
-        else deliveryPrice = getBasePrice() * 0.98;
-
-        setTotalPrice(getBasePrice() + deliveryPrice);
+        if (getTotalPrice() < 5000) {
+            setTotalPrice(getBasePrice() * 1.05);
+        } else {
+            setTotalPrice(getBasePrice() * 1.02);
+        }
 
     }
 
