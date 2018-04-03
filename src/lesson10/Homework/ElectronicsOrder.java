@@ -17,12 +17,12 @@ public class ElectronicsOrder extends Order {
     @Override
     void validateOrder() {
 
-        String[] cities = new String[]{"Kiev", "Odessa", "Dnieper", "Kharkiv"};
+        String[] cities = new String[]{"Киев", "Одесса", "Днепр", "Харьков"};
         for (String city : cities) {
             if (city.equals(getShipFromCity())) {
                 if (city.equals(getShipToCity())) {
                     if (getBasePrice() >= 100) {
-                        if (getCustomerOwned().getGender().equals("Woman"))
+                        if (getCustomerOwned().getGender().equals("Женский"))
                             confirmShipping();
                     }
 

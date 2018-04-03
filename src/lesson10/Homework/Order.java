@@ -31,8 +31,8 @@
         abstract void calculatePrice();
 
         void confirmShipping() {
-            if (dateShipped == null)
-                dateShipped = new Date();
+            if (getDateShipped() == null)
+                setDateShipped(new Date());
         }
 
         public String getItemName() {
