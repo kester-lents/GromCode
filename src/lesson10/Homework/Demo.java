@@ -21,21 +21,23 @@ public class Demo {
         FurnitureOrder fo2 = new FurnitureOrder("stuff", new Date(), "Bristol",
                 "Paris", 343, new Customer("Andrey", "London",
                 "Woman"), "some code");
-        eo.confirmShipping();
-        eo.validateOrder();
-        eo.calculatePrice();
+            eo.validateOrder();
 
-        eo2.confirmShipping();
+        /*eo.validateOrder();
+        eo.calculatePrice();
+        eo.confirmShipping();
+
         eo2.validateOrder();
         eo2.calculatePrice();
+        eo2.confirmShipping();
 
-        fo.confirmShipping();
         fo.validateOrder();
         fo.calculatePrice();
+        fo.confirmShipping();
 
-        fo2.confirmShipping();
         fo2.validateOrder();
         fo2.calculatePrice();
+        fo2.confirmShipping();*/
 
     }
 }
