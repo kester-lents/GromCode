@@ -1,7 +1,5 @@
 package Lesson9.Homework;
 
-import java.util.Arrays;
-
 /**
  * Created by Ruslan on 19.03.2018.
  */
