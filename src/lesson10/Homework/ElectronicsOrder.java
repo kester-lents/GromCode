@@ -36,7 +36,8 @@ public class ElectronicsOrder extends Order {
     цена за доставку равна 15 % от суммы заказа. В других случаях равна 10 %. Так же, если цена заказа больше 1000,
     то скидка на заказ равна 5 % после оплаты комиссии за доставку.
 1. Есть переменная на доставку.
-2. Если городом доставки является не Киев
+2. Если городом доставки Киев или Одесса, то цена за доставку равно 10 %. В других случаях равно 15 %.
+3.
 
 
 
@@ -51,8 +52,8 @@ public class ElectronicsOrder extends Order {
             deliveryPrice = 0.15 * getBasePrice();
         }
 
-        if (getTotalPrice() > 1000) {
-            setTotalPrice(getBasePrice() * 0.05 + deliveryPrice);
+        if (getBasePrice() > 1000) {
+            setTotalPrice(getBasePrice()*0.95 + deliveryPrice);
         }
         else setTotalPrice(getBasePrice() + deliveryPrice);
 
