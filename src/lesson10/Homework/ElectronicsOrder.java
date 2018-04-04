@@ -31,20 +31,30 @@ public class ElectronicsOrder extends Order {
         }
     }
 
+    /*
+    Цена состоит из цены товара + цена за доставку. Есть скидки. Если доставка в любой город кроме, Киева и Одессы, то
+    цена за доставку равна 15 % от суммы заказа. В других случаях равна 10 %. Так же, если цена заказа больше 1000,
+    то скидка на заказ равна 5 % после оплаты комиссии за доставку.
+1. Есть переменная на доставку.
+2. Если городом доставки является не Киев
+
+
+
+    */
     @Override
     void calculatePrice() {
         double deliveryPrice;
-        if (!(getShipToCity().equals("Киев")) && (getShipToCity().equals("Одесса"))) {
-            deliveryPrice = 0.15 * getBasePrice();
+        if ((getShipToCity().equals("Киев")) || (getShipToCity().equals("Одесса"))) {
+            deliveryPrice = 0.1 * getBasePrice();
         }
         else {
-            deliveryPrice = 0.1 * getBasePrice();
+            deliveryPrice = 0.15 * getBasePrice();
         }
 
         if (getTotalPrice() > 1000) {
             setTotalPrice(getBasePrice() * 0.05 + deliveryPrice);
         }
-        setTotalPrice(getBasePrice() + deliveryPrice);
+        else setTotalPrice(getBasePrice() + deliveryPrice);
 
     }
 }
