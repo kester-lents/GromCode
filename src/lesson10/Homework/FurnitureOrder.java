@@ -31,7 +31,6 @@ public class FurnitureOrder extends Order {
 
     @Override
     void calculatePrice() {
-        double deliveryPrice;
         if (getTotalPrice() < 5000) {
             setTotalPrice(getBasePrice() * 1.05);
         } else {
