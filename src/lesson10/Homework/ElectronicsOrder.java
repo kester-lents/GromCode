@@ -15,7 +15,7 @@ public class ElectronicsOrder extends Order {
     }
 
     @Override
-    void validateOrder() {
+    public void validateOrder() {
 
         String[] cities = new String[]{"Киев", "Одесса", "Днепр", "Харьков"};
         for (String city : cities) {
@@ -41,7 +41,7 @@ public class ElectronicsOrder extends Order {
 
     */
     @Override
-    void calculatePrice() {
+    public void calculatePrice() {
         if ((getShipToCity().equals("Киев")) || (getShipToCity().equals("Одесса"))) {
             setTotalPrice(0.1 * getBasePrice());
         } else {

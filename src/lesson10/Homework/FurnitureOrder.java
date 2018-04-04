@@ -15,7 +15,7 @@ public class FurnitureOrder extends Order {
     }
 
     @Override
-    void validateOrder() {
+    public void validateOrder() {
         String[] cities = new String[]{"Киев", "Львов"};
         for (String city : cities) {
             if (city.equals(getShipFromCity())) {
@@ -30,7 +30,7 @@ public class FurnitureOrder extends Order {
 
 
     @Override
-    void calculatePrice() {
+    public void calculatePrice() {
         if (getTotalPrice() < 5000) {
             setTotalPrice(getBasePrice() * 1.05);
         } else {
