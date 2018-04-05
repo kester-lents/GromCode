@@ -26,10 +26,10 @@
             this.customerOwned = customerOwned;
         }
 
-        protected abstract void validateOrder();
-        protected abstract void calculatePrice();
+        public abstract void validateOrder();
+        public abstract void calculatePrice();
 
-        void confirmShipping() {
+        public void confirmShipping() {
             if (getDateShipped() == null)
                 setDateShipped(new Date());
         }
