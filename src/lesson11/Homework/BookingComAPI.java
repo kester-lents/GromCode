@@ -3,10 +3,10 @@ package lesson11.Homework;
 /**
  * Created by Ruslan on 05.04.2018.
  */
-public class BookingCompAPI implements API {
+public class BookingComAPI implements API {
     Room[] rooms;
 
-    public BookingCompAPI(Room[] rooms) {
+    public BookingComAPI(Room[] rooms) {
         this.rooms = rooms;
     }
 
