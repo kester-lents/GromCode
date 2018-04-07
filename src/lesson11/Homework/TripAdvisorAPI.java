@@ -7,6 +7,7 @@ public class TripAdvisorAPI implements API {
     Room [] rooms;
 
     public TripAdvisorAPI(Room[] rooms) {
+
         this.rooms = rooms;
     }
 
@@ -17,6 +18,7 @@ public class TripAdvisorAPI implements API {
 
     @Override
     public Room[] getAll() {
-        return new Room[0];
+        GoogleAPI googleAPI = new GoogleAPI(rooms);
+        return googleAPI.getAll();
     }
 }
