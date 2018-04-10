@@ -10,20 +10,24 @@ public class GoogleAPI implements API {
         this.rooms = rooms;
     }
 
+    /*
+    Ищет строго по параметрам.
+
+    */
+
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
-        int i = 0;
-        getAll();
-
+        int index = 0;
+        Room[] result = new Room[rooms.length];
         for (Room room : rooms) {
-            if (price == room.getPrice() && persons == room.getPersons() && room.getCityName().equals(city)
-                    && room.getHotelName().equals(city) && rooms[i] != null) {
-                getAll()[i] = room;
+            if (room.getPrice() == price && room.getPersons() == persons && room.getCityName().equals(city)
+                    && room.getHotelName().equals(hotel) && rooms[index] != null) {
+                result[index] = rooms[index];
+                index++;
             }
-            i++;
         }
 
-        return getAll();
+        return result;
     }
 
     @Override
