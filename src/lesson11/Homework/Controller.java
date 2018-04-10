@@ -17,7 +17,7 @@ public class Controller {
         int e = 0;
         for (API api : apis) {
             for (Room room : api.getAll()) {
-                if ((apis[i] != null) && (api.getAll()[i] != null)) {
+                if ((apis[i] != null) /*&& (api.getAll()[i] != null)*/) {
                     if (room.getPrice() == price && room.getCityName().equals(city)
                             && room.getHotelName().equals(hotel)) {
                         index++;
@@ -29,7 +29,7 @@ public class Controller {
         Room[] result = new Room[index];
         for (API api : apis) {
             for (Room room2 : api.getAll()) {
-                if ((apis[e] != null) && (api.getAll()[e] != null)) {
+                if ((apis[e] != null) /*&& (api.getAll()[e] != null)*/) {
                     if (room2.getPrice() == price && room2.getCityName().equals(city)
                             && room2.getHotelName().equals(hotel)) {
                         result[a] = api.getAll()[e];
