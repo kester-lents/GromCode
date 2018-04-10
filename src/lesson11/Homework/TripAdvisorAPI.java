@@ -46,7 +46,6 @@ public class TripAdvisorAPI implements API {
 
     @Override
     public Room[] getAll() {
-        GoogleAPI googleAPI = new GoogleAPI(rooms);
-        return googleAPI.getAll();
+        return rooms;
     }
 }
