@@ -12,20 +12,21 @@ public class GoogleAPI implements API {
         this.rooms = rooms;
     }
 
-    /*
-    Ищет строго по параметрам.
-
-    */
-
-    public String toString() {
-        return Arrays.toString(rooms);
-    }
-
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         int index = 0;
         int i = 0;
-        Room[] result = new Room[getAll().length];
+        int a = 0;
+        int e = 0;
+        for (Room room2 : rooms) {
+            if (rooms[e] != null) {
+                a++;
+            }
+            e++;
+        }
+        Room[] result = new Room[a];
+
+
         for (Room room : rooms) {
             if (rooms[i] != null) {
                 if (room.getPrice() == price && room.getPersons() == persons && room.getCityName().equals(city)
