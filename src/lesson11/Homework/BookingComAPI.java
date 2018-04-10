@@ -13,23 +13,36 @@ public class BookingComAPI implements API {
 
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
-        Room[] results = new Room[rooms.length];
         int index = 0;
+        int i = 0;
+        int a = 0;
+        int e = 0;
 
-        for (Room each : rooms) {
-            if (each.getPrice() == price && each.getPersons() == persons &&
-                    each.getCityName().equals(city) && each.getHotelName().equals(city) && rooms[index] != null) {
-                results[index] = each;
-                index++;
-                if (each.getPrice() - 100 < 0)
-                    if (each.getPrice() >= each.getPrice() - 100 && each.getPrice() <= each.getPrice() + 100)
-                        results[index] = each;
-                index++;
+        for (Room room : rooms) {
+            if (rooms[i] != null) {
+                if (((price >= room.getPrice() - 100) || price <= room.getPrice() + 100) &&
+                room.getPersons() == persons && room.getCityName().equals(city)
+                        && room.getHotelName().equals(hotel)){
+                    index++;
+                }
             }
+            i++;
+        }
+        Room[] result = new Room[index];
+        for (Room room2 : rooms) {
+            if (rooms[e] != null) {
+                if (((price >= room2.getPrice() - 100) || price <= room2.getPrice() + 100) &&
+                        room2.getPersons() == persons && room2.getCityName().equals(city)
+                        && room2.getHotelName().equals(hotel)){
+                    result[a] = rooms[e];
+                    a++;
+                }
+            }
+            e++;
         }
 
+        return result;
 
-        return results;
     }
 
     @Override
