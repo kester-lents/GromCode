@@ -34,8 +34,8 @@ public class GoogleAPI implements API {
                     result[index] = rooms[i];
                     index++;
                 }
-                i++;
             }
+            i++;
         }
 
         return result;
