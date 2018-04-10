@@ -18,24 +18,26 @@ public class GoogleAPI implements API {
         int i = 0;
         int a = 0;
         int e = 0;
-        for (Room room2 : rooms) {
-            if (rooms[e] != null) {
-                a++;
-            }
-            e++;
-        }
-        Room[] result = new Room[a];
-
 
         for (Room room : rooms) {
             if (rooms[i] != null) {
                 if (room.getPrice() == price && room.getPersons() == persons && room.getCityName().equals(city)
                         && room.getHotelName().equals(hotel)) {
-                    result[index] = rooms[i];
                     index++;
                 }
             }
             i++;
+        }
+        Room[] result = new Room[index];
+        for (Room room2 : rooms) {
+            if (rooms[e] != null) {
+                if (room2.getPrice() == price && room2.getPersons() == persons && room2.getCityName().equals(city)
+                        && room2.getHotelName().equals(hotel)) {
+                    result[a] = rooms[e];
+                    a++;
+                }
+            }
+            e++;
         }
 
         return result;
