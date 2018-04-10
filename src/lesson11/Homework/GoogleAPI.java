@@ -28,7 +28,7 @@ public class GoogleAPI implements API {
 
     @Override
     public Room[] getAll() {
-        /*int i = 0;
+        int i = 0;
         int index = -1;
         for (Room room : rooms) {
             if (room != null)
@@ -37,11 +37,11 @@ public class GoogleAPI implements API {
         Room[] result = new Room[index];
 
         for (Room room : rooms) {
-            if (rooms[i] != null) {
+            if (room != null) {
                 result[i] = room;
             }
             i++;
-        }*/
-        return new Room[0];
+        }
+        return result;
     }
 }
