@@ -28,20 +28,7 @@ public class GoogleAPI implements API {
 
     @Override
     public Room[] getAll() {
-        int i = 0;
-        int index = -1;
-        for (Room room : rooms) {
-            if (room != null)
-                index++;
-        }
-        Room[] result = new Room[index];
 
-        for (Room room : rooms) {
-            if (room != null) {
-                result[i] = room;
-            }
-            i++;
-        }
-        return result;
+        return rooms;
     }
 }

@@ -34,7 +34,6 @@ public class BookingComAPI implements API {
 
     @Override
     public Room[] getAll() {
-        BookingComAPI bookingComAPI = new BookingComAPI(rooms);
-        return bookingComAPI.getAll();
+        return rooms;
     }
 }
