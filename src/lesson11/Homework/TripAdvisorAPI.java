@@ -4,7 +4,7 @@ package lesson11.Homework;
  * Created by Ruslan on 05.04.2018.
  */
 public class TripAdvisorAPI implements API {
-    Room [] rooms;
+    Room[] rooms;
 
     public TripAdvisorAPI(Room[] rooms) {
 
@@ -15,13 +15,12 @@ public class TripAdvisorAPI implements API {
     public Room[] findRooms(int price, int persons, String city, String hotel) {
 
 
-
-
         return new Room[0];
     }
 
     @Override
     public Room[] getAll() {
-       return rooms;
+        GoogleAPI googleAPI = new GoogleAPI(rooms);
+        return googleAPI.getAll();
     }
 }
