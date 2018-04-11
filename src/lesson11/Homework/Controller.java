@@ -59,10 +59,23 @@ public class Controller {
         int i = 0;
         int a = 0;
         int length = 0;
-        for (Room room2 : api2.getAll()) {
-            for (Room room : api1.getAll()) {
+        Room[] rooms1 = api1.findRooms(api1.getAll()[i].getPrice(), api1.getAll()[i].getPersons(),
+                api1.getAll()[i].getCityName(), api1.getAll()[i].getHotelName());
+        Room[] rooms2 = api2.findRooms(api2.getAll()[a].getPrice(), api2.getAll()[a].getPersons(),
+                api2.getAll()[a].getCityName(), api2.getAll()[a].getHotelName());
+        for (Room room2 : rooms2) {
+            for (Room room : rooms1) {
                 if (room2 != null & room != null) {
-                    if (api1.getAll()[i].getPersons() == api2.getAll()[a].getPersons() &&
+                    if (room == room2) {
+                        length++;
+                    }
+                }
+                i++;
+            }
+            a++;
+        }
+
+                    /*if (api1.getAll()[i].getPersons() == api2.getAll()[a].getPersons() &&
                             api1.getAll()[i].getPrice() == api2.getAll()[a].getPrice() &&
                             api1.getAll()[i].getHotelName().equals(api2.getAll()[a].getHotelName()) &&
                             api1.getAll()[i].getCityName().equals(api2.getAll()[a].getCityName()) &&
@@ -74,27 +87,21 @@ public class Controller {
                 i++;
             }
             a++;
-        }
+        }*/
 
         Room[] result = new Room[length];
-        int q = 0;
-        int w = 0;
+
         int r = 0;
-        for (Room room2 : api2.getAll()) {
-            for (Room room : api1.getAll()) {
-                if (room2 != null && room != null) {
-                    if (api1.getAll()[q].getPersons() == api2.getAll()[w].getPersons() &&
-                            api1.getAll()[q].getPrice() == api2.getAll()[w].getPrice() &&
-                            api1.getAll()[q].getHotelName().equals(api2.getAll()[w].getHotelName()) &&
-                            api1.getAll()[q].getCityName().equals(api2.getAll()[w].getCityName()) &&
-                            api1.getAll()[q].getId() != api2.getAll()[w].getId() &&
-                            api1.getAll()[q].getDateAvailableFrom() != api2.getAll()[w].getDateAvailableFrom()) {
-                        result[r] = api1.getAll()[q];
+        for (Room room2 : rooms2) {
+            for (Room room : rooms1) {
+                if (room2 != null & room != null) {
+                    if (room == room2) {
+                        result[r++] = api1.getAll()[i];
                     }
                 }
-                q++;
+                i++;
             }
-            w++;
+            a++;
         }
         return result;
 
