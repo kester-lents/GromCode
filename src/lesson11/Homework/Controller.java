@@ -14,7 +14,7 @@ public class Controller {
     public Room[] requestRooms(int price, int persons, String city, String hotel) {
         int index = 0;
         int i = 0;
-        int length = -1;
+        int length = 0;
         for (API api : apis) {
             for (Room room : api.getAll()) {
                 if (apis[index] != null && api.getAll()[i] != null)
