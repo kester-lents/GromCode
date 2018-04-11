@@ -34,6 +34,7 @@ public class Controller {
                 if (apis[a] != null && api.getAll()[b] != null)
                     if (api.findRooms(price, persons, city, hotel)[a] == api.getAll()[b]) {
                     result[z] = api.getAll()[b];
+                    z++;
                     }
                 b++;
             }
