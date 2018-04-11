@@ -76,9 +76,9 @@ public class Controller {
                         result[r] = api2.getAll()[w];
                     }
                 }
-                a++;
+                w++;
             }
-            i++;
+            q++;
         }
         return result;
 
