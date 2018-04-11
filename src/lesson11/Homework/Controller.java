@@ -48,9 +48,9 @@ public class Controller {
         int i = 0;
         int a = 0;
         int length = 0;
-        for (API api : apis) {
-            for (Room room : api.getAll()) {
-                if (apis[i] != null && api.getAll()[a] != null) {
+        for (Room room2 : api2.getAll()) {
+            for (Room room : api1.getAll()) {
+                if (api1.getAll()[i] != null && api2.getAll()[a] != null) {
                     if (api1.getAll()[i].getPersons() == api2.getAll()[a].getPersons() &&
                             api1.getAll()[i].getPrice() == api2.getAll()[a].getPrice() &&
                             api1.getAll()[i].getHotelName().equals(api2.getAll()[a].getHotelName()) &&
@@ -60,17 +60,18 @@ public class Controller {
                         length++;
                     }
                 }
-                a++;
+                i++;
             }
-            i++;
+            a++;
         }
+
         Room[] result = new Room[length];
         int q = 0;
         int w = 0;
         int r = 0;
-        for (API api11 : apis) {
-            for (Room room : api11.getAll()) {
-                if (apis[q] != null && api11.getAll()[w] != null) {
+        for (Room room2 : api2.getAll()) {
+            for (Room room : api1.getAll()) {
+                if (api1.getAll()[q] != null && api2.getAll()[w] != null) {
                     if (api1.getAll()[q].getPersons() == api2.getAll()[w].getPersons() &&
                             api1.getAll()[q].getPrice() == api2.getAll()[w].getPrice() &&
                             api1.getAll()[q].getHotelName().equals(api2.getAll()[w].getHotelName()) &&
@@ -80,9 +81,9 @@ public class Controller {
                         result[r] = api1.getAll()[q];
                     }
                 }
-                w++;
+                q++;
             }
-            q++;
+            w++;
         }
         return result;
 
