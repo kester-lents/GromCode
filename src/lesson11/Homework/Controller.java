@@ -11,41 +11,35 @@ public class Controller {
     }
 
 
-
     public Room[] requestRooms(int price, int persons, String city, String hotel) {
         int index = 0;
         int i = 0;
-        int a = 0;
-        int e = 0;
-        int apiIndex2 = 0;
-        int apiIndex = 0;
-
+        int length = -1;
         for (API api : apis) {
             for (Room room : api.getAll()) {
-                if (api.getAll()[i] != null && apis[apiIndex] != null) {
-                    if (room.getPrice() == price && room.getCityName().equals(city)
-                            && room.getHotelName().equals(hotel) && room.getPersons() == persons) {
-                        index++;
+                if (apis[index] != null && api.getAll()[i] != null)
+                    if (api.findRooms(price, persons, city, hotel)[index] == api.getAll()[i]) {
+                        length++;
                     }
-                }
                 i++;
             }
-            apiIndex++;
+            index++;
         }
-        Room[] result = new Room[index];
-        for (API api1 : apis) {
-            for (Room room2 : api1.getAll()) {
-                if ((api1.getAll()[e] != null && apis[apiIndex2] != null)) {
-                    if (room2.getPrice() == price && room2.getCityName().equals(city)
-                            && room2.getHotelName().equals(hotel) && room2.getPersons() == persons) {
-                        result[a] = api1.getAll()[e];
-                        a++;
+        Room [] result = new Room[length];
+        int a = 0;
+        int b = 0;
+        int z = 0;
+        for (API api : apis) {
+            for (Room room : api.getAll()) {
+                if (apis[a] != null && api.getAll()[b] != null)
+                    if (api.findRooms(price, persons, city, hotel)[a] == api.getAll()[b]) {
+                    result[z] = api.getAll()[b];
                     }
-                }
-                e++;
+                b++;
             }
-            apiIndex2++;
+            a++;
         }
+
         return result;
     }
 
