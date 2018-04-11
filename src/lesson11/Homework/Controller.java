@@ -1,10 +1,8 @@
 package lesson11.Homework;
 
-/**
- * Created by Ruslan on 05.04.2018.
- */
+
 public class Controller {
-    API[] apis;
+    private API[] apis;
 
     public Controller(API[] apis) {
         this.apis = apis;
