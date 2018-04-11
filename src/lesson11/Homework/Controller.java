@@ -47,7 +47,7 @@ public class Controller {
     public Room[] check(API api1, API api2) {
         int i = 0;
         int a = 0;
-        int length = -1;
+        int length = 0;
         for (API api : apis) {
             for (Room room : api.getAll()) {
                 if (apis[i] != null && api.getAll()[a] != null) {
@@ -76,7 +76,7 @@ public class Controller {
                             api1.getAll()[q].getHotelName().equals(api2.getAll()[w].getHotelName()) &&
                             api1.getAll()[q].getCityName().equals(api2.getAll()[w].getCityName()) &&
                             api1.getAll()[q].getId() != api2.getAll()[w].getId() /*&&
-                            api1.getAll()[q].getDateAvailableFrom() != api2.getAll()[w].getDateAvailableFrom()*/ ) {
+                            api1.getAll()[q].getDateAvailableFrom() != api2.getAll()[w].getDateAvailableFrom()*/) {
                         result[r] = api1.getAll()[q];
                     }
                 }
