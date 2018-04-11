@@ -30,23 +30,20 @@ public class Controller {
     }
 
     public Room[] check(API api1, API api2) {
-        int i = 0;
-        int a = 0;
         int length = 0;
-        Room[] rooms1 = api1.findRooms(api1.getAll()[i].getPrice(), api1.getAll()[i].getPersons(),
-                api1.getAll()[i].getCityName(), api1.getAll()[i].getHotelName());
-        Room[] rooms2 = api2.findRooms(api2.getAll()[a].getPrice(), api2.getAll()[a].getPersons(),
-                api2.getAll()[a].getCityName(), api2.getAll()[a].getHotelName());
-        for (Room room2 : rooms2) {
-            for (Room room : rooms1) {
-                if (room2 != null & room != null) {
-                    if (room == room2) {
+        for (Room room2 : api2.getAll()) {
+            for (Room room : api1.getAll()) {
+                if (room2 != null && room != null) {
+                    if (room.getPersons() == room2.getPersons() &&
+                            room.getPrice() == room2.getPrice() &&
+                            room.getHotelName().equals(room2.getHotelName()) &&
+                            room.getCityName().equals(room2.getCityName()) &&
+                            room.getId() != room2.getId() &&
+                            room.getDateAvailableFrom() != room2.getDateAvailableFrom()) {
                         length++;
                     }
                 }
-                i++;
             }
-            a++;
         }
         Room[] result = new Room[length];
         int r = 0;
