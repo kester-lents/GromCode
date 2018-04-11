@@ -77,7 +77,7 @@ public class Controller {
                             api1.getAll()[q].getCityName().equals(api2.getAll()[w].getCityName()) &&
                             api1.getAll()[q].getId() != api2.getAll()[w].getId() &&
                             api1.getAll()[q].getDateAvailableFrom() != api2.getAll()[w].getDateAvailableFrom() ) {
-                        result[r] = api2.getAll()[w];
+                        result[r] = api1.getAll()[q];
                     }
                 }
                 w++;
