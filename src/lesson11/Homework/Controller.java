@@ -11,10 +11,27 @@ public class Controller {
 
     public Room[] requestRooms(int price, int persons, String city, String hotel) {
         int index = 0;
-        int i = 0;
-        int length = 0;
+        int index2 = 0;
+
         for (API api : apis) {
-            Room [] rooms = api.findRooms(price, persons, city, hotel);
+            index += api.findRooms(price, persons, city, hotel).length;
+        }
+
+        Room[] result = new Room[index];
+        for (API api : apis) {
+            for (Room room : api.findRooms(price, persons, city, hotel)) {
+                if (api != null) {
+                    result[index2++] = room;
+                }
+            }
+        }
+
+
+
+
+
+
+            /*Room [] rooms = api.findRooms(price, persons, city, hotel);
             for (Room room : rooms) {
                 if (apis[index] != null && room != null)
                     if (rooms[index] == api.getAll()[i]) {
@@ -23,8 +40,8 @@ public class Controller {
                 i++;
             }
             index++;
-        }
-        Room[] result = new Room[length];
+        }*/
+        /*
         int a = 0;
         int b = 0;
         int z = 0;
@@ -40,7 +57,7 @@ public class Controller {
             }
             a++;
         }
-
+*/
         return result;
     }
 
