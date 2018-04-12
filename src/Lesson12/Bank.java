@@ -24,17 +24,16 @@ public abstract class Bank {
     }
 
     public abstract int getLimitOfWithdrawal();
+
     public abstract int getLimitOfFunding();
-    public abstract int getMonthlyRate();
-    public abstract int getCommission(int amount);
 
-    public double moneyPaidMonthlyForSalary(){
-        //TODO
-        return 0;
+    public abstract double getMonthlyRate();
+
+    public abstract double getCommission(int amount);
+
+    public double moneyPaidMonthlyForSalary() {
+        return numberOfEmployees * avrSalaryOfEmployee;
     }
-
-
-
 
 
     public long getId() {
