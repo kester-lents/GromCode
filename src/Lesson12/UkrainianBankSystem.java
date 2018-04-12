@@ -40,14 +40,16 @@ public class UkrainianBankSystem implements BankSystem {
     на зачисление.*/
     @Override
     public void fund(User user, int amount) {
-        if (!checkFunding(user, amount))
+        double fund = user.getBalance() + amount - amount * user.getBank().getCommission(amount);
+        if (!checkFunding(user, amount)) {
             return;
-        user.setBalance(user.getBalance() + amount - amount * user.getBank().getCommission(amount));
+        } else if (fund < user.getBank().getLimitOfFunding())
+            user.setBalance(fund);
     }
 
     private boolean checkFunding(User user, int amount) {
         return (checkFundingLimits(user, amount, user.getBank().getLimitOfFunding()) &&
-                checkFundingLimits(user, amount, user.getBalance()));
+        );
     }
 
     private boolean checkFundingLimits(User user, int amount, double limit) {
@@ -79,8 +81,7 @@ public class UkrainianBankSystem implements BankSystem {
     public void paySalary(User user) {
         if (user.getSalary() > user.getBank().getLimitOfFunding()) {
             return;
-        }
-        else user.setBalance(user.getBalance() + user.getSalary());
+        } else user.setBalance(user.getBalance() + user.getSalary());
     }
 
 
