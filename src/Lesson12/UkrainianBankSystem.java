@@ -73,7 +73,7 @@ public class UkrainianBankSystem implements BankSystem {
     public void paySalary(User user) {
         if (!(user.getSalary() > user.getBank().getLimitOfFunding()))
             return;
-        user.setSalary(user.getSalary());
+        user.setBalance(user.getSalary());
     }
 
 
