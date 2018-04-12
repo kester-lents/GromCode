@@ -33,15 +33,19 @@ public class UkrainianBankSystem implements BankSystem {
         return true;
     }
 
-
     @Override
     public void fund(User user, int amount) {
-        if (!checkLimitOfFunding(user, amount, user.getBank().getLimitOfFunding()))
+        if (!checkFunding(user, amount))
             return;
         user.setBalance(user.getBalance() + amount + amount * user.getBank().getCommission(amount));
     }
 
-    private boolean checkLimitOfFunding(User user, int amount, double limit) {
+    private boolean checkFunding(User user, int amount) {
+        return checkFundingLimits(user, amount, user.getBank().getLimitOfFunding()) &&
+                checkFundingLimits(user, amount, user.getBalance());
+    }
+
+    private boolean checkFundingLimits(User user, int amount, double limit) {
         if (amount - amount * user.getBank().getCommission(amount) > limit) {
             printFundingErrorMsg(user, amount);
             return false;
@@ -60,7 +64,7 @@ public class UkrainianBankSystem implements BankSystem {
         //3. Перевести.
         if (!checkWithdraw(fromUser, amount))
             return;
-        if (!checkLimitOfFunding(toUser, amount, toUser.getBank().getLimitOfFunding()))
+        if (!checkFunding(toUser, amount))
             return;
         fromUser.setBalance(fromUser.getBalance() - amount - amount * fromUser.getBank().getCommission(amount));
         toUser.setBalance(toUser.getBalance() + amount - amount * toUser.getBank().getCommission(amount));
@@ -68,7 +72,7 @@ public class UkrainianBankSystem implements BankSystem {
 
     @Override
     public void paySalary(User user) {
-        if (!checkLimitOfFunding(user, user.getSalary(), user.getBank().getLimitOfFunding()))
+        if (!checkFunding(user, user.getSalary()))
             return;
         user.setSalary(user.getSalary());
     }
