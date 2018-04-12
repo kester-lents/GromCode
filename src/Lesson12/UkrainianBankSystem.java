@@ -40,16 +40,15 @@ public class UkrainianBankSystem implements BankSystem {
     на зачисление.*/
     @Override
     public void fund(User user, int amount) {
-        double fund = user.getBalance() + amount - amount * user.getBank().getCommission(amount);
         if (!checkFunding(user, amount)) {
             return;
-        } else if (fund < user.getBank().getLimitOfFunding())
-            user.setBalance(fund);
+        } else if (user.getBalance() + amount - amount * user.getBank().getCommission(amount) <
+                user.getBank().getLimitOfFunding())
+            user.setBalance(user.getBalance() + amount - amount * user.getBank().getCommission(amount));
     }
 
     private boolean checkFunding(User user, int amount) {
-        return (checkFundingLimits(user, amount, user.getBank().getLimitOfFunding()) &&
-        );
+        return (checkFundingLimits(user, amount, user.getBank().getLimitOfFunding()));
     }
 
     private boolean checkFundingLimits(User user, int amount, double limit) {
