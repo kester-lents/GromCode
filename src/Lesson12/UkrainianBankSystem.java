@@ -33,6 +33,11 @@ public class UkrainianBankSystem implements BankSystem {
         System.err.println("Can't withdraw money " + amount + " from user " + user.toString());
     }
 
+    /* итак. метод fund. пополнение.Логика:
+    1. Проверяет, не превышен ли лимит на пополнение. Лимит расчитывает по формуле: сумма пополнения +
+    сумма за комиссию на пополнение.
+    2. Записывает в новый баланс значение: знач. текущего баланса + сумма пополнения - сумма комиссии
+    на зачисление.*/
     @Override
     public void fund(User user, int amount) {
         if (!checkFunding(user, amount))
@@ -71,9 +76,10 @@ public class UkrainianBankSystem implements BankSystem {
 
     @Override
     public void paySalary(User user) {
-        if (!(user.getSalary() > user.getBank().getLimitOfFunding()))
+        if (user.getSalary() > user.getBank().getLimitOfFunding()) {
             return;
-        user.setBalance(user.getBalance() + user.getSalary());
+        }
+        else user.setBalance(user.getBalance() + user.getSalary());
     }
 
 
