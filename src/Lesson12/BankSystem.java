@@ -1,0 +1,16 @@
+package Lesson12;
+
+
+/**
+ * Created by Ruslan on 12.04.2018.
+ */
+public interface BankSystem {
+    void withdraw(User user, int amount);
+
+    void fund(User user, int amount);
+
+    void transferMoney(User fromUser, User toUser, int amount);
+
+    void paySalary(User user);
+
+}
