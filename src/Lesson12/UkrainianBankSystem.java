@@ -46,7 +46,8 @@ public class UkrainianBankSystem implements BankSystem {
     }
 
     private boolean checkFunding(User user, int amount) {
-        return checkFundingLimits(user, amount, user.getBank().getLimitOfFunding());
+        return (checkFundingLimits(user, amount, user.getBank().getLimitOfFunding()) &&
+                checkFundingLimits(user, amount, user.getBalance()));
     }
 
     private boolean checkFundingLimits(User user, int amount, double limit) {
