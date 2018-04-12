@@ -7,10 +7,14 @@ public class UkrainianBankSystem implements BankSystem {
 
     @Override
     public void withdraw(User user, int amount) {
+        //проверить можно ли снять -
+        //проверить лимит
+        //проверить достаточно ли денег
+        //снять деньги
         if (!checkWithdraw(user, amount)) {
             return;
         }
-         else user.setBalance(user.getBalance() - amount - amount * user.getBank().getCommission(amount));
+         else user.setBalance(user.getBalance() - amount - (amount * user.getBank().getCommission(amount)));
     }
 
     @Override
