@@ -67,12 +67,14 @@ public class UkrainianBankSystem implements BankSystem {
         //1. Проверить, есть ли на счете и проходит ли лимит снятия фромюзер
         //2. Проверить, не превышен ли лимит пополнения у туЮзера.
         //3. Перевести.
-        if (!checkWithdraw(fromUser, amount))
+        if (!checkWithdraw(fromUser, amount)) {
             return;
-        if (!checkFunding(toUser, amount))
+        }
+        if (!checkFunding(toUser, amount)) {
             return;
+        }
         fromUser.setBalance(fromUser.getBalance() - amount - amount * fromUser.getBank().getCommission(amount));
-        toUser.setBalance(toUser.getBalance() + amount);
+        toUser.setBalance(toUser.getBalance() + amount - amount * fromUser.getBank().getCommission(amount));
     }
 
     @Override
