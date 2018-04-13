@@ -69,11 +69,12 @@ public class UkrainianBankSystem implements BankSystem {
         //3. Перевести.
         if (!checkWithdraw(fromUser, amount)) {
             return;
-        } else fromUser.setBalance(fromUser.getBalance() - amount - amount * fromUser.getBank().getCommission(amount));
-
+        }
         if (!checkFunding(toUser, amount)) {
             return;
-        } else toUser.setBalance(toUser.getBalance() + amount);
+        }
+        withdraw(fromUser, amount);
+        fund(toUser, amount);
     }
 
     @Override
