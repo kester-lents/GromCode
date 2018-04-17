@@ -1,17 +1,90 @@
 package Lesson9.Homework;
 
+import java.util.Arrays;
+
 /**
  * Created by Ruslan on 19.03.2018.
  */
 public class Demo {
     public static void main(String[] args) {
-        UserRepository ur = new UserRepository(new User[]{new User(12345, "Ruslan", "good"),
-                new User(233534, "Ruslan", "very good"),
-                new User(3435345, "Ruslan", "perfect")});
-        //System.out.println(Arrays.toString(ur.getUserNames()));
-        //System.out.println(ur.getUserNameById(233534));
+        User user = new User(123142, "Dood", "234325c");
+        User user2 = new User(0, "Dood", "234325c");
+        User user3 = null;
+        UserRepository ur = new UserRepository(new User[]{user, user2, user3});
+
+        User test = new User(325345, "Dood", "234325c");
+
+        //delete
+        //если id - 0
+        //удаляется ли с массива
+        //если нет совпадений по айди -
+        ur.delete(0);
+        System.out.println(Arrays.deepToString(ur.getUsers()));
+
+
+        System.out.println(ur.save(test));
+        System.out.println(Arrays.deepToString(ur.getUsers()));
+
+        //User test = new User(325345, "Dood", "234325c");
+        //User save(User user)
+        //если на вход налл +
+        //на выходе Юзер?
+        //если юзер есть в массиве -
+        //если все ячейки заняты -
+        //System.out.println(ur.save(test));
+        /*1. Если на вход налл - ретурн налл.
+        2. Если один из юзеров - налл, континью.
+        3. Если есть також же юзер, найденный по айди, ретурн налл.
+
+        1. Если один из юзеров массива - налл - сохранить юзера.
+        */
+
+        //test getUserBySessionId
+        //идет ли на выход юзер +
+        //если подается на вход налл +
+        //если SessionId налл +
+        //если юзер налл +
+        System.out.println((ur.getUserBySessionId("234325c")));
+
+        //test findById(long id)
+        //то же самое, что и в предыдущем
+        //идет ли на выход юзер +
+        //если подается на вход налл +
+        //если айди 0 или гетайди +
+        //если юзер налл +
         //System.out.println(ur.findById(0));
-        System.out.println(ur.update(new User(233534, "Ruslanert", "vdfgery good")));
+
+        //test getUserByName(String name)
+        //идет ли на выход юзер +
+        //если подается на вход налл +
+        //если имя юзера налл +
+        //если юзер налл +
+        System.out.println((ur.getUserByName(null)));
+
+        //test getUserNameById(long id) - для получения имени пользователя по его id
+        //в изначальной версии метода, которая, кстати, прошла на громкод, было много не учтено, и по сути,
+        //она только частино правильная, ибо не было учтено неравенстве длинны масивов имен и айдишок
+
+        //выводит ли имя пользователя +
+        //если нет совпадений по id +
+        //если айди пользователя и соответственно getId тоже - 0 (ибо может быть много совпадений)+
+        System.out.println(Arrays.toString(ur.getUserNames()));
+        System.out.println(Arrays.toString(ur.getUserIds()));
+        System.out.println(ur.getUserNameById(1231421));
+
+        //test getUserIds - метод для получения массива айдишок
+        //выводит ли массив +
+        //если айди - 0 +
+        //если объект - налл +
+        System.out.println(Arrays.toString(ur.getUserIds()));
+
+        //test userRepository methods
+        // getUserNames - для получения массива имен пользователей
+        //выводит ли массив +
+        //если имя юзера - налл +
+        //если объект - налл +
+        System.out.println(Arrays.toString(ur.getUserNames()));
+
 
     }
 }

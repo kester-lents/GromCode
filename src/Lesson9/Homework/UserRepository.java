@@ -1,6 +1,6 @@
 package Lesson9.Homework;
 
-import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * Created by Ruslan on 14.03.2018.
@@ -12,88 +12,131 @@ public class UserRepository {
         this.users = users;
     }
 
-    public User[] getUsers() {
-        return users;
-    }
-
     public String[] getUserNames() {
+        int index = 0;
         int i = 0;
-        int size = Array.getLength(users);
-        String[] array = new String[size];
         for (User user : users) {
-            if (user != null)
-                array[i] = user.getName();
-            i++;
+            if (user == null || user.getName() == null)
+                continue;
+            else index++;
         }
-        return array;
+        String[] result = new String[index];
+        for (User user : users) {
+            if (user == null || user.getName() == null)
+                continue;
+            else result[i++] = user.getName();
+        }
+
+        return result;
     }
 
     public long[] getUserIds() {
-        int i = 0;
         int index = 0;
+        int i = 0;
         for (User user : users) {
-            if (user != null)
-                i++;
+            if (user == null || user.getId() == 0)
+                continue;
+            else index++;
         }
-        long[] array = new long[i];
-        for (User user2 : users) {
-            if (index < i)
-                array[index++] = user2.getId();
+        long[] result = new long[index];
+        for (User user : users) {
+            if (user == null || user.getId() == 0)
+                continue;
+            else result[i++] = user.getId();
         }
-        return array;
+
+        return result;
     }
 
     public String getUserNameById(long id) {
-        String a = null;
-        String[] names = getUserNames().clone();
+
+        String a;
+        for (User user : users) {
+            if (user != null && user.getId() != 0 && id == user.getId())
+                return a = user.getName();
+            else continue;
+        }
+
+        return null;
+    }
+
+        /*String[] names = getUserNames().clone();
         long[] ids = getUserIds().clone();
 
-        for (int i = 0; i < ids.length; i++)
-            if (id == ids[i])
-                a = names[i];
-        return a;
-    }
+        for (int j = 0; j < names.length; j++) {
+            for (int i = 0; i < ids.length; i++) {
+                if (id == ids[i])
+                    a = names[j];
+            }
+        }*/
 
 
     public User getUserByName(String name) {
-
-        int count = 0;
+        if (name == null)
+            return null;
         for (User user : users) {
-            if (name == user.getName() /*user != null*/) {
-                return users[count];
-            } else return null;
-        }
 
-        return users[count];
+            if (user == null || user.getName() == null) {
+                continue;
+            }
+            if (name == user.getName())
+                return user;
+        }
+        return null;
     }
 
-    public User findById(long id) {
-        int i;
-        for (i = 0; i < users.length; i++) {
-            if (users[i] != null) {
-                if (id == users[i].getId()) {
-                    return users[i];
-                }
+    private User findById(long id) {
+        if (id == 0)
+            return null;
+        for (User user : users) {
+            if (user == null || user.getId() == 0) {
+                continue;
             }
+            if (id == user.getId())
+                return user;
         }
         return null;
     }
 
     public User getUserBySessionId(String sessionId) {
-        int count = 0;
-
+        if (sessionId == null)
+            return null;
         for (User user : users) {
-            if (sessionId == user.getSessionId() /*&& user != null*/) {
-                return users[count];
-            } else return null;
+
+            if (user == null || user.getSessionId() == null) {
+                continue;
+            }
+            if (sessionId == user.getName())
+                return user;
         }
-
-        return users[count];
-
+        return null;
     }
 
     public User save(User user) {
-        for (int j = 0; j < users.length; j++) {
+        for (User user1 : users) {
+            if (user == null) {
+                return null;
+            }
+            if (findById(user.getId()) != null)
+                return null;
+            if (user1 == null || user1.getId() == 0)
+                continue;
+            if (findById(user1.getId()) == findById(user.getId()))
+                return null;
+        }
+        int index = 0;
+        for (User user2 : users) {
+            if (user2 == null) {
+                users[index] = user;
+            }
+            index++;
+        }
+        return user;
+    }
+
+
+        /*for (int j = 0; j < users.length; j++) {
+
             if (findById(user.getId()) != null && findById(users[j].getId()) != null)
                 if (user.getId() == users[j].getId())
                     return null;
@@ -103,14 +146,12 @@ public class UserRepository {
                 users[i] = user;
                 return user;
             }
-        }
-        return null;
-    }
+        }*/
+
 
     public void delete(long id) {
-        int i;
-        for (i = 0; i < users.length; i++) {
-            if (users[i] != null) {
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] != null && id != 0) {
                 if (id == users[i].getId()) {
                     users[i] = null;
                 }
@@ -119,8 +160,9 @@ public class UserRepository {
     }
 
     public User update(User user) {
+
         for (int j = 0; j < users.length; j++) {
-            if (findById(user.getId()) != null && findById(users[j].getId()) != null) {
+            if (findById(user.getId()) != null) {
                 if (user.getId() == users[j].getId()) {
                     users[j] = user;
                     return users[j];
@@ -129,4 +171,16 @@ public class UserRepository {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "UserRepository{" +
+                "users=" + Arrays.toString(users) +
+                '}';
+    }
+
+    public User[] getUsers() {
+        return users;
+    }
+
 }

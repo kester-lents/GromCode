@@ -13,10 +13,6 @@ public class User {
         this.name = name;
         this.sessionId = sessionId;
     }
-    @Override
-    public String toString() {
-        return this.id + ", " + this.name + ", " + this.sessionId;
-    }
 
     public long getId() {
         return id;
@@ -28,5 +24,14 @@ public class User {
 
     public String getSessionId() {
         return sessionId;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sessionId='" + sessionId + '\'' +
+                '}';
     }
 }
