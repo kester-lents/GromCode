@@ -116,7 +116,7 @@ public class UserRepository {
         if (user == null)
             return null;
 
-        if (findById(user.getId()) != null)
+        if (findById(user.getId()) != null || user.getId() == 0)
             return null;
 
         int sells = 0;
