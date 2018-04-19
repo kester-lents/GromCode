@@ -113,25 +113,6 @@ public class UserRepository {
     }
 
     public User save(User user) {
-  /*      if (user == null)
-            return null;
-        if (findById(user.getId()) != null)
-            return null;
-        int countPlaced = 0;
-        for (User us : users){
-            if (us != null)
-                countPlaced++;
-    }
-    if (countPlaced>9)
-        return null;
-        int index = 0;
-        for (User us: users){
-            if (us == null)
-                users[index] = user
-        }*/
-
-
-
 
         if (user == null)
             return null;
