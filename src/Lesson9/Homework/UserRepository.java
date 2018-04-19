@@ -113,25 +113,20 @@ public class UserRepository {
     }
 
     public User save(User user) {
-        for (User user1 : users) {
-            if (user == null) {
-                return null;
-            }
-            if (findById(user.getId()) != null)
-                return null;
+        if (user == null)
+            return null;
 
-            if (user1 == null || user1.getId() == 0)
-                continue;
-            if (findById(user1.getId()) == findById(user.getId()))
-                return null;
-            int sells = 0;
-            for (User user123 : users) {
-                if (user123 != null)
-                    sells++;
-            }
-            if (sells > users.length - 1)
-                return null;
+        if (findById(user.getId()) != null)
+            return null;
+
+        int sells = 0;
+        for (User user123 : users) {
+            if (user123 != null)
+                sells++;
         }
+        if (sells > users.length - 1)
+            return null;
+
         int index = 0;
         for (User user2 : users) {
             if (user2 == null) {
