@@ -14,7 +14,25 @@ public class Demo {
 
         User test = new User(325345, "Dood", "234325c");
 
-        //test update
+        System.out.println(ur.save(test));
+        System.out.println(Arrays.deepToString(ur.getUsers()));
+
+
+        //User save(User user)
+        //если на вход налл +
+        //на выходе Юзер?   +
+        //если юзер есть в массиве +
+        //если все ячейки заняты +
+        //System.out.println(ur.save(test));
+        /*1. Если на вход налл - ретурн налл.
+        2. Если один из юзеров - налл, континью.
+        3. Если есть також же юзер, найденный по айди, ретурн налл.
+
+        1. Если один из юзеров массива - налл - сохранить юзера.
+        */
+
+
+       /* //test update
         //обновление юзера
         //когда нет юзера на обновление (ничего не должно происходить, но и не падать)
         //когда обновляем налл
@@ -30,22 +48,7 @@ public class Demo {
         System.out.println(Arrays.deepToString(ur.getUsers()));
 
 
-        System.out.println(ur.save(test));
-        System.out.println(Arrays.deepToString(ur.getUsers()));
 
-        //User test = new User(325345, "Dood", "234325c");
-        //User save(User user)
-        //если на вход налл +
-        //на выходе Юзер?
-        //если юзер есть в массиве -
-        //если все ячейки заняты -
-        //System.out.println(ur.save(test));
-        /*1. Если на вход налл - ретурн налл.
-        2. Если один из юзеров - налл, континью.
-        3. Если есть також же юзер, найденный по айди, ретурн налл.
-
-        1. Если один из юзеров массива - налл - сохранить юзера.
-        */
 
         //test getUserBySessionId
         //идет ли на выход юзер +
@@ -92,7 +95,7 @@ public class Demo {
         //если имя юзера - налл +
         //если объект - налл +
         System.out.println(Arrays.toString(ur.getUserNames()));
-
+*/
 
     }
 }

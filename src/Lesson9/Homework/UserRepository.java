@@ -85,7 +85,7 @@ public class UserRepository {
         return null;
     }
 
-    private User findById(long id) {
+    public User findById(long id) {
         if (id == 0)
             return null;
         for (User user : users) {
@@ -119,9 +119,17 @@ public class UserRepository {
             }
             if (findById(user.getId()) != null)
                 return null;
+
             if (user1 == null || user1.getId() == 0)
                 continue;
             if (findById(user1.getId()) == findById(user.getId()))
+                return null;
+            int sells = 0;
+            for (User user123 : users) {
+                if (user123 != null)
+                    sells++;
+            }
+            if (sells > users.length - 1)
                 return null;
         }
         int index = 0;

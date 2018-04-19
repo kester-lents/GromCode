@@ -18,14 +18,14 @@ public class Demo {
         FurnitureOrder fo2 = new FurnitureOrder("stuff", new Date(), "Киев",
                 "ddfgd", 10000, new Customer("dfgdf", "London",
                 "Woman"), "some code");
-        eo.validateOrder();
+        /*eo.validateOrder();
         eo.calculatePrice();
         eo2.validateOrder();
         eo2.calculatePrice();
         fo.validateOrder();
         fo.calculatePrice();
         fo2.validateOrder();
-        fo2.calculatePrice();
+        fo2.calculatePrice();*/
 
 
         //FurnitureOrder calculatePrice
