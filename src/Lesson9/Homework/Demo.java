@@ -13,7 +13,7 @@ public class Demo {
         User user4 = new User(123, "Dood", "234325c");
         UserRepository ur = new UserRepository(new User[]{user, user2, user3, user4});
 
-        User test = new User(0, "Dood", "234325c");
+        User test = new User(1234, "Dood", "234325c");
 
         System.out.println(ur.save(test));
         System.out.println(Arrays.deepToString(ur.getUsers()));

@@ -6,7 +6,7 @@ import java.util.Arrays;
  * Created by Ruslan on 14.03.2018.
  */
 public class UserRepository {
-    private User[] users;
+    private User[] users /*= new User[10]*/;
 
     public UserRepository(User[] users) {
         this.users = users;
@@ -113,6 +113,26 @@ public class UserRepository {
     }
 
     public User save(User user) {
+  /*      if (user == null)
+            return null;
+        if (findById(user.getId()) != null)
+            return null;
+        int countPlaced = 0;
+        for (User us : users){
+            if (us != null)
+                countPlaced++;
+    }
+    if (countPlaced>9)
+        return null;
+        int index = 0;
+        for (User us: users){
+            if (us == null)
+                users[index] = user
+        }*/
+
+
+
+
         if (user == null)
             return null;
 
@@ -131,6 +151,7 @@ public class UserRepository {
         for (User user2 : users) {
             if (user2 == null) {
                 users[index] = user;
+                break;
             }
             index++;
         }
