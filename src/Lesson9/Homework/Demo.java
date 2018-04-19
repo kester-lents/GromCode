@@ -14,6 +14,14 @@ public class Demo {
 
         User test = new User(325345, "Dood", "234325c");
 
+        //test update
+        //обновление юзера
+        //когда нет юзера на обновление (ничего не должно происходить, но и не падать)
+        //когда обновляем налл
+        user = new User(199, "Ruslan", "sdfs");
+        System.out.println(ur.update(user));
+        System.out.println(Arrays.deepToString(ur.getUsers()));
+
         //delete
         //если id - 0
         //удаляется ли с массива

@@ -16,20 +16,42 @@ public class ElectronicsOrder extends Order {
 
     @Override
     public void validateOrder() {
-
-        String[] cities = new String[]{"Киев", "Одесса", "Днепр", "Харьков"};
+       /* String[] cities = new String[]{"Киев", "Одесса", "Днепр", "Харьков"};
         for (String city : cities) {
-            if (city.equals(getShipFromCity())) {
-                if (city.equals(getShipToCity())) {
-                    if (getBasePrice() >= 100) {
-                        if (getCustomerOwned().getGender().equals("Женский"))
-                            setDateConfirmed(new Date());
-                    }
-
-                }
+            if (city.equals(getShipFromCity()) && city.equals(getShipToCity()) && getBasePrice() >= 100 &&
+                    getCustomerOwned().getGender().equals("Женский")) {
+                setDateConfirmed(new Date());
             }
         }
+    }*/
+        if (getCustomerOwned() == null || getCustomerOwned().getName() == null)
+            return;
+
+        String[] citiesFromCity = new String[]{"Киев", "Одесса", "Днепр", "Харьков"};
+        String[] citiesToCity = new String[]{"Киев", "Одесса", "Днепр", "Харьков"};
+        int i = 0;
+        for (String city : citiesFromCity) {
+            if (city == getShipFromCity()) {
+                break;
+            } else if (i != 3) {
+                i++;
+                continue;
+            } else return;
+        }
+        int j = 0;
+        for (String city2 : citiesToCity) {
+            if (city2 == getShipToCity()) {
+                break;
+            } else if (j != 3) {
+                j++;
+                continue;
+            } else return;
+        }
+        if (getBasePrice() >= 100 && getCustomerOwned().getGender().equals("Женский")) {
+            setDateConfirmed(new Date());
+        }
     }
+
 
     /*
     Цена состоит из цены товара + цена за доставку. Есть скидки. Если доставка в любой город кроме, Киева и Одессы, то
@@ -42,7 +64,10 @@ public class ElectronicsOrder extends Order {
     */
     @Override
     public void calculatePrice() {
-        if ((getShipToCity().equals("Киев")) || (getShipToCity().equals("Одесса"))) {
+        if (getShipToCity() == null || getBasePrice() <= 0)
+            return;
+
+        if ((getShipToCity() == "Киев") || getShipToCity() == "Одесса") {
             setTotalPrice(0.1 * getBasePrice());
         } else {
             setTotalPrice(0.15 * getBasePrice());
