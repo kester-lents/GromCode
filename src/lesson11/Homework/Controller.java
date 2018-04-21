@@ -1,7 +1,10 @@
 package lesson11.Homework;
 
 
+import java.util.Arrays;
+
 public class Controller {
+
     private API[] apis;
 
     public Controller(API[] apis) {
@@ -10,27 +13,36 @@ public class Controller {
 
 
     public Room[] requestRooms(int price, int persons, String city, String hotel) {
+
         int index = 0;
         int index2 = 0;
 
         for (API api : apis) {
-            index += api.findRooms(price, persons, city, hotel).length;
+            if (api == null)
+                continue;
+            for (Room room : api.findRooms(price, persons, city, hotel)) {
+                index++;
+            }
         }
 
         Room[] result = new Room[index];
         for (API api : apis) {
+            if (api == null)
+                continue;
             for (Room room : api.findRooms(price, persons, city, hotel)) {
-                if (api != null) {
-                    result[index2++] = room;
-                }
+                result[index2++] = room;
+                System.out.println(Arrays.toString(result));
             }
         }
 
         return result;
     }
 
+
     public Room[] check(API api1, API api2) {
         int length = 0;
+        if (api1 == null || api2 == null)
+            return null;
         for (Room room2 : api2.getAll()) {
             for (Room room : api1.getAll()) {
                 if (room2 != null && room != null) {
@@ -45,6 +57,7 @@ public class Controller {
                 }
             }
         }
+
         Room[] result = new Room[length];
         int r = 0;
         for (Room room2 : api2.getAll()) {

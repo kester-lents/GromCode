@@ -1,5 +1,7 @@
 package lesson11.Homework;
 
+import java.util.Arrays;
+
 /**
  * Created by Ruslan on 05.04.2018.
  */
@@ -15,34 +17,37 @@ public class BookingComAPI implements API {
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         int index = 0;
         int i = 0;
-        int a = 0;
-        int e = 0;
 
         for (Room room : rooms) {
-            if (rooms[i] != null) {
-                if (((price >= room.getPrice() - 100) || price <= room.getPrice() + 100) &&
-                room.getPersons() == persons && room.getCityName().equals(city)
-                        && room.getHotelName().equals(hotel)){
-                    index++;
-                }
+            if (price < 0)
+                return null;
+            if (room == null || room.getPrice() < 0) {
+                continue;
             }
-            i++;
+            int max = price + 100;
+            int min = price - 100;
+            if (room.getPersons() == persons && room.getCityName().equals(city)
+                    && room.getHotelName().equals(hotel)) {
+                if (room.getPrice() >= min && room.getPrice() >= 0 && room.getPrice() <= max)
+                    index++;
+            }
         }
         Room[] result = new Room[index];
-        for (Room room2 : rooms) {
-            if (rooms[e] != null) {
-                if (((price >= room2.getPrice() - 100) || price <= room2.getPrice() + 100) &&
-                        room2.getPersons() == persons && room2.getCityName().equals(city)
-                        && room2.getHotelName().equals(hotel)){
-                    result[a] = rooms[e];
-                    a++;
-                }
+        for (Room room : rooms) {
+            if (price < 0)
+                return null;
+            if (room == null || room.getPrice() < 0) {
+                continue;
             }
-            e++;
+            int max = price + 100;
+            int min = price - 100;
+            if (room.getPersons() == persons && room.getCityName().equals(city)
+                    && room.getHotelName().equals(hotel)) {
+                if (room.getPrice() >= min && room.getPrice() >= 0 && room.getPrice() <= max)
+                    result[i++] = room;
+            }
         }
-
         return result;
-
     }
 
     @Override
