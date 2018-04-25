@@ -1,7 +1,5 @@
 package lesson15.HomeWork;
 
-import java.util.Arrays;
-
 /**
  * Created by Ruslan on 25.04.2018.
  */
@@ -87,6 +85,9 @@ public class UserRepository {
         return null;
     }
 
+    public User[] getUsers() {
+        return users;
+    }
 }
 
 
