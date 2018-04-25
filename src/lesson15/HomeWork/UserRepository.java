@@ -4,13 +4,13 @@ package lesson15.HomeWork;
  * Created by Ruslan on 25.04.2018.
  */
 public class UserRepository {
-    private User[] users = new User[]{new User(1234, "Qwerty", "324"), new User(1234, "Qwerty", "324"),
-            new User(1234, "Qwerty", "324"), new User(1234, "Qwerty", "324")};
+    private User[] users = new User[10];
 
     public UserRepository(User[] users) {
         this.users = users;
     }
-//User save
+
+    //User save
     //если входящий юзер налл - тогда налл
     //объекты(юзеры) равны, если работает equals
     //если индекс
@@ -23,16 +23,17 @@ public class UserRepository {
         for (User user1 : users) {
             if (user.equals(user1))
                 return null;
-            else index++;
-            if (index == 9)
-                return null;
-            for (User user2: users) {
-                if (user2 == null)
-                    user2 = user;
-            }
-
+            else if (user1 != null)
+                index++;
         }
-
+        if (index == 10)
+            return null;
+        for (User user2 : users) {
+            if (user2 == null) {
+                user2 = user;
+                return user2;
+            }
+        }
 
         return null;
     }
@@ -43,11 +44,13 @@ public class UserRepository {
         if (user == null)
             return null;
         for (User user1 : users) {
-           if (user1.equals(user));
-            user1 = user;
-            return user1;
+            if (user1 == null)
+                continue;
+            if (user1.equals(user)) {
+                user1 = user;
+                return user1;
+            }
         }
-
         return null;
     }
 
@@ -62,14 +65,12 @@ public class UserRepository {
             return;
         for (User user : users) {
             if (user == null || UserfindById(id) == null)
-
-                if (user == UserfindById(id)) {
-                    user = null;
-                    break;
-                }
+                continue;
+            if (user == UserfindById(id)) {
+                user = null;
+                break;
+            }
         }
-
-
     }
 //User UserFindById
     //Если айди 0
@@ -80,7 +81,9 @@ public class UserRepository {
         if (id == 0)
             return null;
         for (User user : users) {
-            if (user.getId() == id && user.getId() != 0)
+            if (user == null)
+                continue;
+            if (user.getId() == id)
                 return user;
         }
         return null;
