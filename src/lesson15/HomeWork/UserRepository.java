@@ -4,7 +4,8 @@ package lesson15.HomeWork;
  * Created by Ruslan on 25.04.2018.
  */
 public class UserRepository {
-    private User[] users = new User[10];
+    private User[] users = new User[]{new User(1234, "Qwerty", "324"), new User(1234, "Qwerty", "324"),
+            new User(1234, "Qwerty", "324"), new User(1234, "Qwerty", "324")};
 
     public UserRepository(User[] users) {
         this.users = users;
