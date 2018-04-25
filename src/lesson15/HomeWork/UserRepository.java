@@ -20,7 +20,7 @@ public class UserRepository {
             return null;
         }
         int index = 0;
-        for (User user1 : users) {
+        for (User user1 : getUsers()) {
             if (user.equals(user1))
                 return null;
             else if (user1 != null)
@@ -28,7 +28,7 @@ public class UserRepository {
         }
         if (index == 10)
             return null;
-        for (User user2 : users) {
+        for (User user2 : getUsers()) {
             if (user2 == null) {
                 user2 = user;
                 return user2;
@@ -43,7 +43,7 @@ public class UserRepository {
     public User update(User user) {
         if (user == null)
             return null;
-        for (User user1 : users) {
+        for (User user1 : getUsers()) {
             if (user1 == null)
                 continue;
             if (user1.equals(user)) {
@@ -63,7 +63,7 @@ public class UserRepository {
     public void delete(long id) {
         if (id == 0)
             return;
-        for (User user : users) {
+        for (User user : getUsers()) {
             if (user == null || UserfindById(id) == null)
                 continue;
             if (user == UserfindById(id)) {
@@ -80,7 +80,7 @@ public class UserRepository {
     public User UserfindById(long id) {
         if (id == 0)
             return null;
-        for (User user : users) {
+        for (User user : getUsers()) {
             if (user == null)
                 continue;
             if (user.getId() == id)
