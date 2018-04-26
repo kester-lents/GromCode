@@ -5,7 +5,16 @@ package lesson15.HomeWork_modifiedLesson9;
  */
 public class UserRepository {
     private User[] users = new User[10];
-
+    User user1 = new User(1234, "Qwerty", "324");
+    User user2 = new User(1231, "Qwerty", "324");
+    User user3 = new User(12343, "Qwerty", "324");
+    User user4 = new User(1235434, "Qwerty", "324");
+    User user5 = new User(1232, "Qwerty546", "324");
+    User user6 = null;
+    User user7 = null;
+    User user8 = new User(123235, "Qwerty546", "324");
+    User user9 = null;
+    User user10 = null;
     //User save
     //если входящий юзер налл - тогда налл
     //объекты(юзеры) равны, если работает equals
@@ -15,8 +24,8 @@ public class UserRepository {
         if (user == null) {
             return null;
         }
-        /*if (UserfindById(user.getId()) != null || user.getId() == 0)
-            return null;*/
+        if (UserfindById(user.getId()) != null || user.getId() == 0)
+            return null;
 
         int index = 0;
         for (User user1 : users) {
