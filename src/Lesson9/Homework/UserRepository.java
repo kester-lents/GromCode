@@ -6,11 +6,11 @@ import java.util.Arrays;
  * Created by Ruslan on 14.03.2018.
  */
 public class UserRepository {
-    private User[] users /*= new User[10]*/;
+    private User[] users = new User[10];
 
-    public UserRepository(User[] users) {
+   /* public UserRepository(User[] users) {
         this.users = users;
-    }
+    }*/
 
     public String[] getUserNames() {
         int index = 0;
