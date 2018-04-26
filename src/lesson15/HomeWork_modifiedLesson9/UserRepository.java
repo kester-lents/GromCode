@@ -1,14 +1,10 @@
-package lesson15.HomeWork;
+package lesson15.HomeWork_modifiedLesson9;
 
 /**
  * Created by Ruslan on 25.04.2018.
  */
 public class UserRepository {
     private User[] users = new User[10];
-
-    public UserRepository(User[] users) {
-        this.users = users;
-    }
 
     //User save
     //если входящий юзер налл - тогда налл

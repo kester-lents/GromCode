@@ -1,4 +1,4 @@
-package lesson15.Homework2;
+package lesson15.Homework2_modifiedLesson11;
 
 /**
  * Created by Ruslan on 05.04.2018.
