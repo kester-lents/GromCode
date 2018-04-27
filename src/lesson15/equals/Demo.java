@@ -8,7 +8,7 @@ public class Demo {
         File file1 = new File(111,"home/Documents/test", "txt");
         File file2 = new File(111,"home/Documents/image", "jpg");
         File file3 = new File(111,"home/Documents/test", "txt");
-
+/*
         File someFile = file1;
 
         System.out.println(file1.equals(file2));
@@ -22,6 +22,6 @@ public class Demo {
         System.out.println(file1==someFile);
 
         User user = new User(1001);
-        System.out.println(file1.equals(user));
+        System.out.println(file1.equals(user));*/
     }
 }
