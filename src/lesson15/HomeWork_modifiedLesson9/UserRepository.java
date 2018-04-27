@@ -4,19 +4,18 @@ package lesson15.HomeWork_modifiedLesson9;
  * Created by Ruslan on 25.04.2018.
  */
 public class UserRepository {
+   /* User user = new User(1234, "Qwerty", "324");
+    User user2 = new User(1231, "Qwerty", "324");
+    User user3 = new User(100, "Ruslan", "123");
+    User user4 = new User(1235434, "Qwerty", "324");
+    User user5 = new User(1232, "Qwerty546", "324");
+    User user6 = null;
+    User user7 = null;
+    User user8 = new User(1001, "Ruslan", "123");
+    User user9 = null;
+    User user10 = null;*/
+    private User[] users = new User[10]/*{user, user2, user3, user4, user5, user6, user7, user8, user9, user10}*/;
 
-
-    private User[] users = new User[10]/*{user0, user2, user3, user4, user5, user6, user7, user8, user9, user10}*/;
-        /*User user = new User(1234, "Qwerty", "324");
-        User user2 = new User(1231, "Qwerty", "324");
-        User user3 = new User(12343, "Qwerty", "324");
-        User user4 = new User(1235434, "Qwerty", "324");
-        User user5 = new User(1232, "Qwerty546", "324");
-        User user6 = null;
-        User user7 = null;
-        User user8 = new User(123235, "Qwerty546", "324");
-        User user9 = null;
-        User user10 = null;*/
     //User save
     //если входящий юзер налл - тогда налл
     //объекты(юзеры) равны, если работает equals
@@ -58,17 +57,17 @@ public class UserRepository {
             return null;
         if (userFindById(user.getId()) == null)
             return null;
-
+        if (user.equals(userFindById(user.getId())))
+            return null;
+        int index = 0;
         for (User user1 : users) {
             if (user1 != null) {
-                if (user.equals(user1))
-                    return null;
-                if (user.getId() == user1.getId()) {
-                    user1 = user;
-                    return user;
+                if (user.getId() == users[index].getId()) {
+                    users[index] = user;
+                    return users[index];
                 }
             }
-
+            index++;
         }
 
         return null;
