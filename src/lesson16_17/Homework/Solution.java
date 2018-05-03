@@ -7,7 +7,7 @@ import java.util.Arrays;
  */
 public class Solution {
     public static void main(String[] args) {
-        String str = null;
+        String str = "     7";
 
         System.out.println(countWords2(str));
 
@@ -65,11 +65,12 @@ public class Solution {
     static Boolean validationWord(String word) {
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (Character.isLetter(c) || Character.isWhitespace(c)) {
-                return true;
+            if (Character.isLetter(c)) {
+                continue;
             }
+            else return false;
         }
-        return false;
+        return true;
     }
 
     /*static int countWords(String input) {
@@ -122,11 +123,20 @@ public class Solution {
        2. Сравнить длину отдельных слов.
         */
     static String maxWord(String input) {
-        String[] words = arrayWithoutSpaces(input);
-        System.out.println(Arrays.toString(words));
+        if (input == null)
+            return null;
+        String res = input.trim();
+        if (res.isEmpty())
+            return null;
+
+        String[] array = arrayWithoutSpaces(input);
+        for (String word : array) {
+            if (!validationWord(word))
+                return null;
+        }
         int max = 0;
         String maxWord = null;
-        for (String word : words) {
+        for (String word : array) {
             if (word.length() > max) {
                 max = word.length();
                 maxWord = word;
@@ -136,11 +146,20 @@ public class Solution {
     }
 
     static String minWord(String input) {
-        String[] words = arrayWithoutSpaces(input);
-        System.out.println(Arrays.toString(words));
+        if (input == null)
+            return null;
+        String res = input.trim();
+        if (res.isEmpty())
+            return null;
+
+        String[] array = arrayWithoutSpaces(input);
+        for (String word : array) {
+            if (!validationWord(word))
+                return null;
+        }
         int min = 10;
         String minWord = null;
-        for (String word : words) {
+        for (String word : array) {
             if (word.length() < min) {
                 min = word.length();
                 minWord = word;
