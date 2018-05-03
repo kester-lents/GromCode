@@ -1,4 +1,4 @@
-package lesson16_17;
+package lesson16_17.Theory;
 
 import java.util.Arrays;
 

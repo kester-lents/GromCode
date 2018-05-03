@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Created by Ruslan on 03.05.2018.
  */
-public class Solution extends lesson16_17.Homework_countWords.Solution {
+public class Solution {
 
     public static void main(String[] args) {
 
@@ -38,4 +38,31 @@ public class Solution extends lesson16_17.Homework_countWords.Solution {
 этот элемент в еще один массив. Массивы равны по размерности.
 3. Найти максимальный индекс в одном массиве, и по этому индексу вывести элемент другого массива.
 */
+    protected static String[] arrayWithoutSpaces(String input) {
+        String[] words = input.split(" ");
+        int index = 0;
+        int i = 0;
+        for (String el : words) {
+            if (!el.isEmpty())
+                index++;
+        }
+        String[] result = new String[index];
+        for (String el : words) {
+            if (!el.isEmpty())
+                result[i++] = el;
+        }
+
+        return result;
+    }
+
+    protected static Boolean validationWord(String word) {
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (Character.isLetter(c)) {
+                continue;
+            }
+            else return false;
+        }
+        return true;
+    }
 }

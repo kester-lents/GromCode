@@ -1,4 +1,4 @@
-package lesson16_17;
+package lesson16_17.Theory;
 
 /**
  * Created by Ruslan on 27.04.2018.
