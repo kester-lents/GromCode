@@ -1,4 +1,4 @@
-package lesson16_17.Homework_countWords;
+package lesson16_17.Homework;
 
 import java.util.Arrays;
 
@@ -8,11 +8,12 @@ import java.util.Arrays;
 public class Solution {
     public static void main(String[] args) {
 
-        String str = " hello ya you ";
+        String str = "asdf zxcv xcvb";
         System.out.println(mostCountedWord(str));
     }
-
+//ОКАЗАЛОСЬ, ЧТО НУЖНО ВЫВЕСТИ НЕ ЛЮБОЕ ИЗ СЛОВ, ЕСЛИ НАИБОЛЕЕ ПОПУЛЯРНЫХ НЕСКОЛЬКО, А ПЕРВОЕ
     /*
+    Находим самое повторяемое слово в стринге. Если таких несколько, то выводим любое. Если не
     - Убираем со входящего стринга лишние пробелы, и разбиваем на слова.
     - Пробегаемся по массиву и считаем количество индексов, которые выходит при условии контейнс подстринга его
     первому, второму и т.д. элментов. Количество вхождений записываем в массив индексов.
@@ -26,26 +27,28 @@ public class Solution {
             return null;
 
         String[] words = wordsArray(input);
+        if (words.length == 0)
+            return null;
+
+        if (words == null)
+            return null;
         int[] indexes = new int[words.length];
         for (int i = 0; i < words.length; i++) {
             for (int j = i + 1; j < words.length; j++) {
                 if (words[i].equals(words[j]))
                     indexes[i]++;
-
             }
-
         }
-       // System.out.println(Arrays.toString(indexes));
-        int maxcount = 0;
+        int maxCount = -1;
         int index = 0;
         for (int i = 0; i < indexes.length; i++) {
-            if (indexes[i] > maxcount)
+            if (indexes[i] > maxCount) {
+                maxCount = indexes[i];
                 index = i;
+            }
         }
-        if (index != 0)
-            return words[index];
 
-        return null;
+        return words[index];
     }
 
 
@@ -127,6 +130,10 @@ public class Solution {
     }
 
     protected static String[] arrayWithoutSpaces(String input) {
+        if (input == null)
+            return null;
+        if (input.isEmpty())
+            return null;
         String[] words = input.split(" ");
         int index = 0;
         int i = 0;
@@ -144,7 +151,10 @@ public class Solution {
     }
 
     protected static Boolean validationWord(String word) {
+
         for (int i = 0; i < word.length(); i++) {
+            if (word.isEmpty() || word == null)
+                return false;
             char c = word.charAt(i);
             if (Character.isLetter(c)) {
                 continue;
@@ -154,6 +164,10 @@ public class Solution {
     }
 
     protected static String[] wordsArray(String input) {
+        if (input == null)
+            return null;
+        if (input.isEmpty())
+            return null;
         String[] array = arrayWithoutSpaces(input);
         int index = 0;
         int i = 0;
@@ -193,6 +207,14 @@ public class Solution {
         return index += 1;
     }*/
 
+/*
+ Найти наиболее повторяемое слово в стринге.
+ Разделить стринг на слова по условиям.
+ Найти количество совпадений каждого слова в стринге, сравнив это слово с другими.
+ Вывести любое из нескольких наиболее популярных слов.
+
+
+ */
 
 
 
