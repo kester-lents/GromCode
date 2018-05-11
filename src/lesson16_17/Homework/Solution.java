@@ -1,25 +1,64 @@
 package lesson16_17.Homework;
 
-import java.util.Arrays;
-
 /**
  * Created by Ruslan on 02.05.2018.
  */
 public class Solution {
     public static void main(String[] args) {
 
-        String str = "asdf zxcv xcvb";
-        System.out.println(mostCountedWord(str));
+        String str = "https://www.gromc34odfge.com";
+        System.out.println(validate(str));
+
     }
-//ОКАЗАЛОСЬ, ЧТО НУЖНО ВЫВЕСТИ НЕ ЛЮБОЕ ИЗ СЛОВ, ЕСЛИ НАИБОЛЕЕ ПОПУЛЯРНЫХ НЕСКОЛЬКО, А ПЕРВОЕ
-    /*
-    Находим самое повторяемое слово в стринге. Если таких несколько, то выводим любое. Если не
-    - Убираем со входящего стринга лишние пробелы, и разбиваем на слова.
-    - Пробегаемся по массиву и считаем количество индексов, которые выходит при условии контейнс подстринга его
-    первому, второму и т.д. элментов. Количество вхождений записываем в массив индексов.
+
+    /* ПЕРЕПИСАТЬ
+    - Проверить протоколы
+    - Проверить доменные зоны.
+    - Проверить www
+    - Нет ли запрещенных символов?
+   */
+    static Boolean validate(String address) {
+        if (address == null) {
+                return false;
+        }
+        if (address.startsWith("http://")) {
+            if (address.endsWith(".com") || address.endsWith(".org") || address.endsWith(".net")) {
+                if (address.substring(7, 11).equals("www.")) {
+                    if (validationWord(address.substring(12, address.length() - 4)))
+                        return true;
+                } else if (validationWord(address.substring(7, address.length() - 4)))
+                    return true;
+            }
+
+        } else if (address.startsWith("https://")) {
+            if (address.endsWith(".com") || address.endsWith(".org") || address.endsWith(".net")) {
+                if (address.substring(8, 12).equals("www.")) {
+                    if (validationWord(address.substring(12, address.length() - 4)))
+                        return true;
+                }
+                else if (validationWord(address.substring(8, address.length() - 4)))
+                    return true;
+            }
+        }
+        return false;
+    }
 
 
-    */
+
+
+
+
+
+
+
+    //ОКАЗАЛОСЬ, ЧТО НУЖНО ВЫВЕСТИ НЕ ЛЮБОЕ ИЗ СЛОВ, ЕСЛИ НАИБОЛЕЕ ПОПУЛЯРНЫХ НЕСКОЛЬКО, А ПЕРВОЕ
+        /*
+        Находим самое повторяемое слово в стринге. Если таких несколько, то выводим любое. Если не
+        - Убираем со входящего стринга лишние пробелы, и разбиваем на слова.
+        - Пробегаемся по массиву и считаем количество индексов, которые выходит при условии контейнс подстринга его
+        первому, второму и т.д. элментов. Количество вхождений записываем в массив индексов.
+        */
+
     static String mostCountedWord(String input) {
         if (input == null)
             return null;
@@ -50,7 +89,6 @@ public class Solution {
 
         return words[index];
     }
-
 
     /*
     1. Проверяет не налл ли входящий Стринг, или не пустой ли.
@@ -122,10 +160,10 @@ public class Solution {
         }
 
         index = array.length - index;
-        /*for (int i = 0; i < res.length(); i++) {
-            if (Character.isWhitespace(res.charAt(i)) && !Character.isWhitespace(res.charAt(i + 1)))
-                index++;
-        }*/
+            /*for (int i = 0; i < res.length(); i++) {
+                if (Character.isWhitespace(res.charAt(i)) && !Character.isWhitespace(res.charAt(i + 1)))
+                    index++;
+            }*/
         return index /*+= 1*/;
     }
 
@@ -134,7 +172,7 @@ public class Solution {
             return null;
         if (input.isEmpty())
             return null;
-        String[] words = input.split(" ");
+        String[] words = input.split("\\.");
         int index = 0;
         int i = 0;
         for (String el : words) {
@@ -156,7 +194,7 @@ public class Solution {
             if (word.isEmpty() || word == null)
                 return false;
             char c = word.charAt(i);
-            if (Character.isLetter(c)) {
+            if (Character.isLetter(c) && !Character.isWhitespace(c) || Character.isDigit(c)) {
                 continue;
             } else return false;
         }
@@ -188,33 +226,33 @@ public class Solution {
 
 //Первые попытки
 
- /*static int countWords(String input) {
-        if (input.isEmpty())
-            return 0;
-
-        for (int i = 0; i < input.length(); i++) {
-            char c = input.charAt(i);
-            if (!validationWord(c)) {
+     /*static int countWords(String input) {
+            if (input.isEmpty())
                 return 0;
+
+            for (int i = 0; i < input.length(); i++) {
+                char c = input.charAt(i);
+                if (!validationWord(c)) {
+                    return 0;
+                }
             }
-        }
-        int index = 0;
-        String res = input.trim();
-        for (int i = 0; i < res.length(); i++) {
-            if (Character.isWhitespace(res.charAt(i)) && !Character.isWhitespace(res.charAt(i + 1)))
-                index++;
-        }
-        return index += 1;
-    }*/
+            int index = 0;
+            String res = input.trim();
+            for (int i = 0; i < res.length(); i++) {
+                if (Character.isWhitespace(res.charAt(i)) && !Character.isWhitespace(res.charAt(i + 1)))
+                    index++;
+            }
+            return index += 1;
+        }*/
 
-/*
- Найти наиболее повторяемое слово в стринге.
- Разделить стринг на слова по условиям.
- Найти количество совпадений каждого слова в стринге, сравнив это слово с другими.
- Вывести любое из нескольких наиболее популярных слов.
+    /*
+     Найти наиболее повторяемое слово в стринге.
+     Разделить стринг на слова по условиям.
+     Найти количество совпадений каждого слова в стринге, сравнив это слово с другими.
+     Вывести любое из нескольких наиболее популярных слов.
 
 
- */
+     */
 
 
 
