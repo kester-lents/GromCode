@@ -1,12 +1,14 @@
 package lesson16_17.Homework;
 
+import java.util.Arrays;
+
 /**
  * Created by Ruslan on 02.05.2018.
  */
 public class Solution {
     public static void main(String[] args) {
 
-        String str = "https://www.gromc34odfge.com";
+        String str = "https://gromc34odfge.com";
         System.out.println(validate(str));
 
     }
@@ -17,31 +19,48 @@ public class Solution {
     - Проверить www
     - Нет ли запрещенных символов?
    */
+/*
+Рефакторинг
+
+*/
+
     static Boolean validate(String address) {
         if (address == null) {
-                return false;
+            return false;
         }
-        if (address.startsWith("http://")) {
-            if (address.endsWith(".com") || address.endsWith(".org") || address.endsWith(".net")) {
-                if (address.substring(7, 11).equals("www.")) {
-                    if (validationWord(address.substring(12, address.length() - 4)))
-                        return true;
-                } else if (validationWord(address.substring(7, address.length() - 4)))
-                    return true;
-            }
+        if (address.startsWith("http://") && checkAfterProtocol(address, "http://")) {
+            return true;
 
-        } else if (address.startsWith("https://")) {
-            if (address.endsWith(".com") || address.endsWith(".org") || address.endsWith(".net")) {
-                if (address.substring(8, 12).equals("www.")) {
-                    if (validationWord(address.substring(12, address.length() - 4)))
-                        return true;
-                }
-                else if (validationWord(address.substring(8, address.length() - 4)))
+        } else if (address.startsWith("https://") && checkAfterProtocol(address, "https://")) {
+            return true;
+        }
+        return false;
+
+    }
+
+    static boolean checkAfterProtocol(String address, String protocol) {
+        if (address.startsWith(protocol)) {
+            address = address.replace(protocol, "");
+            if (checkDomen(address))
+                address = address.replace(address.substring(address.length() - 4), "");
+            if (address.startsWith("www.")) {
+                address = address.replace("www.", "");
+                if (validationWord(address))
                     return true;
-            }
+            } else if (validationWord(address))
+                return true;
+
         }
         return false;
     }
+
+    static Boolean checkDomen(String address) {
+        return address.endsWith(".com") || address.endsWith(".org") || address.endsWith(".net");
+    }
+
+
+
+
 
 
 
