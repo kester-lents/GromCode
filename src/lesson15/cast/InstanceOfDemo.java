@@ -15,8 +15,12 @@ public class InstanceOfDemo {
 
         System.out.println(internetProvider instanceof Provider);
 
+        //  //ClassCastException
+
         if (test() instanceof InternetProvider) {
+            System.out.println(test());
         } else if (test() instanceof FoodProvider) {
+            System.out.println(test());
         }
 
     }
