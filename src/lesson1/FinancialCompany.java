@@ -1,6 +1,6 @@
 package lesson1;
 
-import Lesson9.Company;
+import lesson9.Company;
 
 /**
  * Created by Ruslan on 14.03.2018.
