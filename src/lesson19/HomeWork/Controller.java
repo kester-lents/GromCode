@@ -7,7 +7,7 @@ public class Controller {
 
     void put(Storage storage, File file)throws Exception{
         if (file == null)
-            throw new NullPointerException("nothing to add");
+            throw new RuntimeException("file " + file.getId() + " can't add in " + storage.getId());
         for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
             if (strgFile == null)
                 continue;
