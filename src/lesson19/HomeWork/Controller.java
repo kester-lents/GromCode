@@ -13,7 +13,7 @@ public class Controller {
 6. Проверка, есть ли пустое место в массиве, и запись файла туда.
 */
 
-    void put(Storage storage, File file) /*throws Exception*/ {
+    void put(Storage storage, File file) throws Exception {
         if (file == null)
             throw new NullPointerException("nothing to add");
         for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
