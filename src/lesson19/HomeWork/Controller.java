@@ -5,7 +5,7 @@ package lesson19.HomeWork;
  */
 public class Controller {
 
-    void put(Storage storage, File file) throws Exception {
+    void put(Storage storage, File file){
         if (file == null)
             throw new NullPointerException("nothing to add");
         for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
