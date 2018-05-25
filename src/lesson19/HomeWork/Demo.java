@@ -15,9 +15,15 @@ public class Demo {
                 "Ukraine", 2353245);
         Storage storage3 = new Storage(12345, new File[]{file1, file2, file3}, new String[]{"jpg", "exe", "jar"},
                 "Ukraine", 2353245);
-        Controller controller = new Controller();
+        try {
+            Controller controller = new Controller();
+            controller.put(storage1, fileForChecking);
+        }
+        catch (Exception e){
 
-        controller.put(storage1, fileForChecking);
+        }
+
+
         //if file containing in storage?
         //if format of file is unacceptable?
 
