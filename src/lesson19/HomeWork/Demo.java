@@ -18,7 +18,7 @@ public class Demo {
         try {
             Controller controller = new Controller();
             controller.put(storage1, fileForChecking);
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
 
         }
 
