@@ -4,10 +4,18 @@ package lesson19.HomeWork;
  * Created by Ruslan on 22.05.2018.
  */
 public class Controller {
+/*
+1. Проверка файла на налл.
+2. Проверка, не одинаковый ли файл из одним с стореджа или даже если просто по айдишникам одинаковы.
+3. Расчет текущего размера стореджа.
+4. Проверка валидности формата добавляемого файла.
+5. Проверка файла по условиям: длина имена не больше 10 символов, не превышается ли размер стореджа.
+6. Проверка, есть ли пустое место в массиве, и запись файла туда.
+*/
 
-    void put(Storage storage, File file)throws Exception{
+    void put(Storage storage, File file) /*throws Exception*/ {
         if (file == null)
-            throw new RuntimeException("file " + file.getId() + " can't add in " + storage.getId());
+            throw new NullPointerException("nothing to add");
         for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
             if (strgFile == null)
                 continue;
