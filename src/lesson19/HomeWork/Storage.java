@@ -41,4 +41,8 @@ public class Storage {
     public void setFiles(File[] files) {
         this.files = files;
     }
+
+    public void setStorageSize(long storageSize) {
+        this.storageSize = storageSize;
+    }
 }
