@@ -15,13 +15,13 @@ public class Controller {
 
     void put(Storage storage, File file) throws Exception {
         if (file == null)
-            throw new NullPointerException("nothing to add");
+            return;
         for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
             if (strgFile == null)
                 continue;
             if ((strgFile.getId() == file.getId() && strgFile.getName().equals(file.getName())) ||
                     strgFile.getId() == file.getId())
-                throw new RuntimeException("file " + file.getId() + " is containing in storage " + storage.getId());
+                return;
         }
         if (validateFile(storage, file)) {
             for (File strgFile : storage.getFiles()) {
@@ -32,7 +32,7 @@ public class Controller {
                 }
             }
         } else throw new RuntimeException("file " + file.getId() + " can't add in " + storage.getId());
-        System.out.println("something wrong");
+
     }
 
     boolean validateFile(Storage storage, File file) {
