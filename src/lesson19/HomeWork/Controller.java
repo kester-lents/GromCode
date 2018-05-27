@@ -20,15 +20,18 @@ public class Controller {
             validateFile(storage, file);
         } catch (Exception e) {
             System.err.println("file " + file.getId() + " can't add in " + storage.getId());
+            return;
         }
-
+        int i = 0;
         for (File strgFile : storage.getFiles()) {
             if (strgFile == null) {
                 strgFile = file;
                 System.out.println("done");
                 return;
-            }
+            } else i++;
         }
+        if (i == storage.getFiles().length)
+            throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
     }
 
     void validateFile(Storage storage, File file) throws Exception {
@@ -53,13 +56,13 @@ public class Controller {
             else i++;
         }
         if (i == storage.getFormatsSupported().length)
-            throw new RuntimeException("file " + file.getId() + " can't add in " + storage.getId());
+            throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
 
         for (File strgFile : storage.getFiles()) { //validating file according conditions
             if (strgFile != null)
                 continue;
-            if (file.getName().length() < 11 && curStorSize + file.getSize() < storage.getStorageSize())
-                throw new RuntimeException("file " + file.getId() + " can't add in " + storage.getId());
+            if (file.getName().length() > 10 || curStorSize + file.getSize() > storage.getStorageSize())
+                throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
         }
     }
 
