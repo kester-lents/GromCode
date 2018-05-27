@@ -1,5 +1,7 @@
 package lesson19.HomeWork;
 
+import java.util.NoSuchElementException;
+
 /**
  * Created by Ruslan on 22.05.2018.
  */
@@ -14,28 +16,30 @@ public class Controller {
 */
 
     void put(Storage storage, File file) throws Exception {
+        try {
+            validateFile(storage, file);
+        } catch (Exception e) {
+            System.err.println("file " + file.getId() + " can't add in " + storage.getId());
+        }
+
+        for (File strgFile : storage.getFiles()) {
+            if (strgFile == null) {
+                strgFile = file;
+                System.out.println("done");
+                return;
+            }
+        }
+    }
+
+    void validateFile(Storage storage, File file) throws Exception {
         if (file == null)
-            return;
+            throw new NullPointerException("nothing to add");
         for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
             if (strgFile == null)
                 continue;
-            if ((strgFile.getId() == file.getId() && strgFile.getName().equals(file.getName())) ||
-                    strgFile.getId() == file.getId())
-                return;
+            if (strgFile.getId() == file.getId())
+                throw new Exception("file " + file.getId() + " is containing in storage " + storage.getId());
         }
-        if (validateFile(storage, file)) {
-            for (File strgFile : storage.getFiles()) {
-                if (strgFile == null) {
-                    strgFile = file;
-                    System.out.println("done");
-                    return;
-                }
-            }
-        } else throw new RuntimeException("file " + file.getId() + " can't add in " + storage.getId());
-
-    }
-
-    boolean validateFile(Storage storage, File file) {
         long curStorSize = 0;
         for (File file1 : storage.getFiles()) { //calculating current size of storage
             if (file1 != null)
@@ -49,15 +53,14 @@ public class Controller {
             else i++;
         }
         if (i == storage.getFormatsSupported().length)
-            return false;
+            throw new RuntimeException("file " + file.getId() + " can't add in " + storage.getId());
 
         for (File strgFile : storage.getFiles()) { //validating file according conditions
             if (strgFile != null)
                 continue;
             if (file.getName().length() < 11 && curStorSize + file.getSize() < storage.getStorageSize())
-                return true;
+                throw new RuntimeException("file " + file.getId() + " can't add in " + storage.getId());
         }
-        return false;
     }
 
     void delete(Storage storage, File file) {
