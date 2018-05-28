@@ -1,5 +1,6 @@
 package lesson19.HomeWork;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 /**
@@ -69,17 +70,19 @@ public class Controller {
     }
 
     void delete(Storage storage, File file) throws Exception {
+        System.out.println(Arrays.toString(storage.getFiles()));
         if (file == null)
             throw new NullPointerException("nothing to delete");
-        validateFile(storage,file);
+
         int i = 0;
         for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
             if (strgFile != null) {
                 if (strgFile.getId() == file.getId() && strgFile.getName().equals(file.getName())) {
                     storage.getFiles()[i] = null;
                     System.out.println("done");
+                    System.out.println(Arrays.toString(storage.getFiles()));
                     return;
-                }
+                } else i++;
             } else i++;
         }
         throw new Exception("file " + file.getId() + " isn't contained in " + storage.getId());

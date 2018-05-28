@@ -8,8 +8,8 @@ public class Demo {
         File file1 = new File(12345, "Ruslan", "exe", 123);
         File file2 = new File(123456, "Ruslan1", "jpg", 1234);
         File file3 = new File(123457, "Ruslan2", "jar", 1235);
-        File fileForChecking = new File(12345, "Ruslan", "jar", 235);
-        Storage storage1 = new Storage(12345, new File[]{file1, file2, file3, null}, new String[]{"jpg", "exe", "jar"},
+        File fileForChecking = new File(123457, "Ruslan23", "jar", 235);
+        Storage storage1 = new Storage(12345, new File[]{file1, file2, null, file3, null}, new String[]{"jpg", "exe", "jar"},
                 "Ukraine", 2353245);
         Storage storage2 = new Storage(12345, new File[]{file1, file2, file3}, new String[]{"jpg", "exe", "jar"},
                 "Ukraine", 2353245);
@@ -17,9 +17,8 @@ public class Demo {
                 "Ukraine", 2353245);
         Controller controller = new Controller();
         try {
-            controller.delete(storage1, file2);
-        }
-        catch (Exception e){
+            controller.delete(storage1, fileForChecking);
+        } catch (Exception e) {
             System.out.println("trouble");
         }
         return;
