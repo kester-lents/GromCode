@@ -16,14 +16,14 @@ public class Demo {
         Storage storage3 = new Storage(12345, new File[]{file1, file2, file3}, new String[]{"jpg", "exe", "jar"},
                 "Ukraine", 2353245);
         Controller controller = new Controller();
-        /*try {
-            controller.put(storage1, fileForChecking);
+        try {
+            controller.delete(storage1, file2);
         }
         catch (Exception e){
             System.out.println("trouble");
         }
-        return;*/
-        controller.delete(storage1, null);
+        return;
+
 
         //if file containing in storage?
         //if format of file is unacceptable?

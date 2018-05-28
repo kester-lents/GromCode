@@ -68,7 +68,7 @@ public class Controller {
         }
     }
 
-    void delete(Storage storage, File file) {
+    void delete(Storage storage, File file) throws Exception {
         if (file == null)
             throw new NullPointerException("nothing to delete");
         int i = 0;
@@ -81,7 +81,7 @@ public class Controller {
                 }
             } else i++;
         }
-        System.out.println("nothing to delete");
+        throw new Exception("file " + file.getId() + " isn't contained in " + storage.getId());
     }
 
     void transferAll(Storage storageFrom, Storage storageTo) {
