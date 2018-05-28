@@ -16,7 +16,10 @@ public class Controller {
 */
 
     void put(Storage storage, File file) throws Exception {
+        if (file == null)
+            throw new NullPointerException("nothing to add");
 
+        findDuplicates(storage, file);
         validateFile(storage, file);
 
         int i = 0;
@@ -32,14 +35,7 @@ public class Controller {
     }
 
     void validateFile(Storage storage, File file) throws Exception {
-        if (file == null)
-            throw new NullPointerException("nothing to add");
-        for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
-            if (strgFile == null)
-                continue;
-            if (strgFile.getId() == file.getId())
-                throw new Exception("file " + file.getId() + " is containing in storage " + storage.getId());
-        }
+
         long curStorSize = 0;
         for (File file1 : storage.getFiles()) { //calculating current size of storage
             if (file1 != null)
@@ -63,8 +59,29 @@ public class Controller {
         }
     }
 
-    void delete(Storage storage, File file) {
+    void findDuplicates(Storage storage, File file) throws Exception {
+        for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
+            if (strgFile == null)
+                continue;
+            if (strgFile.getId() == file.getId())
+                throw new Exception("file " + file.getId() + " is containing in storage " + storage.getId());
+        }
+    }
 
+    void delete(Storage storage, File file) {
+        if (file == null)
+            throw new NullPointerException("nothing to delete");
+        int i = 0;
+        for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
+            if (strgFile != null) {
+                if (strgFile.getId() == file.getId() && strgFile.getName().equals(file.getName())) {
+                    storage.getFiles()[i] = null;
+                    System.out.println("done");
+                    return;
+                }
+            } else i++;
+        }
+        System.out.println("nothing to delete");
     }
 
     void transferAll(Storage storageFrom, Storage storageTo) {
