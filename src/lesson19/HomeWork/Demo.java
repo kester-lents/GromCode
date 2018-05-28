@@ -20,9 +20,8 @@ public class Demo {
             controller.put(storage1, fileForChecking);
         }
         catch (Exception e){
-            System.out.println("operation is failed");
         }
-
+        return;
 
         //if file containing in storage?
         //if format of file is unacceptable?

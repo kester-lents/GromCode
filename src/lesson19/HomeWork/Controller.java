@@ -16,16 +16,13 @@ public class Controller {
 */
 
     void put(Storage storage, File file) throws Exception {
-        try {
-            validateFile(storage, file);
-        } catch (Exception e) {
-            System.err.println("file " + file.getId() + " can't add in " + storage.getId());
-            return;
-        }
+
+        validateFile(storage, file);
+
         int i = 0;
         for (File strgFile : storage.getFiles()) {
             if (strgFile == null) {
-                strgFile = file;
+                storage.getFiles()[i] = file;
                 System.out.println("done");
                 return;
             } else i++;
