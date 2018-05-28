@@ -63,8 +63,6 @@ public class Controller {
         }
         if (i == storage.getFormatsSupported().length)
             throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
-
-
     }
 
     void putProcessing(Storage storage, File file) throws Exception {
@@ -118,7 +116,7 @@ public class Controller {
     }
 
     void transferFile(Storage storageFrom, Storage storageTo, long id) throws Exception {
-        System.out.println(Arrays.toString(storageTo.getFiles()));
+
         if (id == 0)
             throw new NullPointerException("nothing to add");
 
