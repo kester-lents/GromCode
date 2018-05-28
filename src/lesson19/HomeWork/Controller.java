@@ -71,6 +71,7 @@ public class Controller {
     void delete(Storage storage, File file) throws Exception {
         if (file == null)
             throw new NullPointerException("nothing to delete");
+        validateFile(storage,file);
         int i = 0;
         for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
             if (strgFile != null) {
