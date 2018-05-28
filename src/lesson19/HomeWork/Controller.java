@@ -117,8 +117,24 @@ public class Controller {
 
     }
 
-    void transferFile(Storage storageFrom, Storage storageTo, long id) {
+    void transferFile(Storage storageFrom, Storage storageTo, long id) throws Exception {
+        System.out.println(Arrays.toString(storageTo.getFiles()));
+        if (id == 0)
+            throw new NullPointerException("nothing to add");
 
+        int i = 0;
+        for (File file : storageFrom.getFiles()) {
+            if (file == null) {
+                i++;
+                continue;
+            }
+            if (file.getId() == id) {
+                put(storageTo, storageFrom.getFiles()[i]);
+                System.out.println(Arrays.toString(storageTo.getFiles()));
+                return;
+            } else i++;
+        }
+        throw new Exception("file with id " + id + " can't add in " + storageTo.getId());
     }
 
 
