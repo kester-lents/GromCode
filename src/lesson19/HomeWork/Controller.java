@@ -18,6 +18,7 @@ public class Controller extends Validation {
 
     void put(Storage storage, File file) throws Exception {
         validationFile(storage, file);
+        putProcessing(storage,file);
     }
 
     void delete(Storage storage, File file) throws Exception {
