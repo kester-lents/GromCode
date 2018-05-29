@@ -40,15 +40,12 @@ public class Validation {
 
     void checkFormatFile(Storage storage, File file) throws Exception {
 
-        int i = 0;
         //is format of file suitable for adding in storage?
         for (String format : storage.getFormatsSupported()) {
             if (file.getFormat().equals(format))
-                break;
-            else i++;
+                return;
         }
-        if (i == storage.getFormatsSupported().length)
-            throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
+        throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
     }
 
     void putProcessing(Storage storage, File file) throws Exception {

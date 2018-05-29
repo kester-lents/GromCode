@@ -8,7 +8,7 @@ public class Demo {
         File file1 = new File(12345, "Ruslan", "exe", 123);
         File file2 = new File(123456, "Ruslan1", "jpg", 1234);
         File file3 = new File(123457, "Ruslan2", "jar", 1235);
-        File fileForChecking = new File(123457, "Ruslan23", "jar", 235);
+        File fileForChecking = new File(123457808, "Ruslan23", "jarh", 235);
         File file4 = new File(123453254, "Ruslan", "exe", 123);
         File file5 = new File(12345634, "Ruslan1", "jpg", 1234);
         File file6 = new File(123452347, "Ruslan2", "jar", 1235);
@@ -20,7 +20,7 @@ public class Demo {
                 "Ukraine", 2353245);
         Controller controller = new Controller();
         try {
-            controller.transferFile(storage1, storage2, 123452347);
+            controller.put(storage2, fileForChecking);
         } catch (Exception e) {
             System.out.println("trouble");
         }
