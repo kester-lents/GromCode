@@ -20,7 +20,7 @@ public class Demo {
                 "Ukraine", 2353245);
         Controller controller = new Controller();
         try {
-            controller.transferFile(storage1, storage2, 183452347);
+            controller.transferFile(storage1, storage2, 123452347);
         } catch (Exception e) {
             System.out.println("trouble");
         }
