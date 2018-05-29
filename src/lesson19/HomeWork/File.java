@@ -10,6 +10,8 @@ public class File {
     private long size;
 
     public File(long id, String name, String format, long size) {
+        if (name.length() > 10)
+            throw new IllegalArgumentException("name must have to 10 letters include");
         this.id = id;
         this.name = name;
         this.format = format;

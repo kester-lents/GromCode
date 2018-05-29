@@ -21,8 +21,7 @@ public class Controller extends Validation {
     }
 
     void delete(Storage storage, File file) throws Exception {
-        if (file == null)
-            throw new NullPointerException("nothing to delete");
+        checkForNullFile(file);
 
         int i = 0;
         for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?

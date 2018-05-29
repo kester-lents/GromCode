@@ -5,24 +5,22 @@ package lesson19.HomeWork;
  */
 public class Validation {
     void validationFile(Storage storage, File file) throws Exception {
-        checkForNullFile(storage, file);
+        checkForNullFile(file);
         findDuplicates(storage, file);
         checkNameAndSizeFile(storage, file);
         checkFormatFile(storage, file);
-        putProcessing(storage, file);
     }
 
-    void checkForNullFile(Storage storage, File file) throws Exception {
+    void checkForNullFile(File file) throws Exception {
         if (file == null)
             throw new NullPointerException("nothing to add");
     }
 
     void findDuplicates(Storage storage, File file) throws Exception {
         for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
-            if (strgFile == null)
-                continue;
-            if (strgFile.getId() == file.getId())
+            if (strgFile != null && strgFile.getId() == file.getId())
                 throw new Exception("file " + file.getId() + " is containing in storage " + storage.getId());
+
         }
     }
 
