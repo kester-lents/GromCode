@@ -1,5 +1,7 @@
 package lesson20.task2;
 
+import lesson20.task2.Exception.LimitExceeded;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -8,15 +10,38 @@ import java.util.Date;
  */
 public class TransactionDAO {
     private Transaction[] transactions = new Transaction[10];
+    private Utils utils = new Utils();
 
-    public Transaction save(Transaction transaction) {
+    public Transaction save(Transaction transaction) throws LimitExceeded {
     /*
-    сумма транзакции больше указанного лимита
-    сумма транзакций за день больше дневного лимита
-    количество транзакций за день больше указанного лимита
+    сумма транзакции больше указанного лимита +
+    сумма транзакций за день больше дневного лимита +
+    количество транзакций за день больше указанного лимита +
     если город оплаты (совершения транзакции) не разрешен
     не хватило места
     */
+        if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
+            throw new LimitExceeded("Transaction limit exceed " + transaction.getId() + " can't be saved");
+
+        int sum = 0;
+        int count = 0;
+        for (Transaction tr : getTransactionsPerDay(transaction.getDateCreated())) {
+            sum += tr.getAmount();
+            count++;
+        }
+        if (sum > utils.getLimitTransactionsPerDayAmount())
+            throw new LimitExceeded("Transaction limit per day amount exceed " + transaction.getId() + " can't be saved");
+
+        if (count > utils.getLimitTransactionsPerDayCount())
+            throw new LimitExceeded("Transaction limit per day count exceed " + transaction.getId() + " can't be saved");
+
+        int i = 0;
+        for (String cities : utils.getCities()) {
+            if (!transaction.getCity().equals(cities))
+                i++;
+        }
+
+
 
 
         return null;
@@ -40,6 +65,7 @@ public class TransactionDAO {
     private Transaction[] getTransactionsPerDay(Date dateOfCurTransaction) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dateOfCurTransaction);
+
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 

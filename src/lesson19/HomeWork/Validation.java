@@ -17,7 +17,6 @@ public class Validation {
         for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
             if (strgFile != null && strgFile.getId() == file.getId())
                 throw new Exception("file " + file.getId() + " is containing in storage " + storage.getId());
-
         }
     }
 
@@ -27,12 +26,8 @@ public class Validation {
             if (file1 != null)
                 curStorSize += file1.getSize();
         }
-        for (File strgFile : storage.getFiles()) { //validating file according conditions
-            if (strgFile != null)
-                continue;
-            if (curStorSize + file.getSize() > storage.getStorageSize())
-                throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
-        }
+        if (curStorSize + file.getSize() > storage.getStorageSize())
+            throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
     }
 
     void checkFormatFile(Storage storage, File file) throws Exception {
