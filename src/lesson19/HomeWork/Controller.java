@@ -37,6 +37,13 @@ public class Controller extends Validation {
         }
         throw new Exception("file " + file.getId() + " isn't contained in " + storage.getId());
     }
+/*
+Найти количество места для переноса.
+Найти количество файлов, которые будут переносится.
+Количество места не должно быть меньше количества переносимых файлов.
+Пробегаемся по всем переносимым файлам, и проверяем, подойдут ли они все для переноса.
+Переносим.
+*/
 
     void transferAll(Storage storageFrom, Storage storageTo) throws Exception {
         int zero = 0;
