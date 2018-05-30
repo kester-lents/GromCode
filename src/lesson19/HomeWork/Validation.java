@@ -5,15 +5,12 @@ package lesson19.HomeWork;
  */
 public class Validation {
     void validationFile(Storage storage, File file) throws Exception {
-        checkForNullFile(file);
-        findDuplicates(storage, file);
-        checkNameAndSizeFile(storage, file);
-        checkFormatFile(storage, file);
-    }
-
-    void checkForNullFile(File file) throws Exception {
         if (file == null)
-            throw new NullPointerException("nothing to add");
+            throw new NullPointerException("file is null");
+
+        findDuplicates(storage, file);
+        checkSizeFile(storage, file);
+        checkFormatFile(storage, file);
     }
 
     void findDuplicates(Storage storage, File file) throws Exception {
@@ -24,7 +21,7 @@ public class Validation {
         }
     }
 
-    void checkNameAndSizeFile(Storage storage, File file) throws Exception {
+    void checkSizeFile(Storage storage, File file) throws Exception {
         long curStorSize = 0;
         for (File file1 : storage.getFiles()) { //calculating current size of storage
             if (file1 != null)
@@ -33,7 +30,7 @@ public class Validation {
         for (File strgFile : storage.getFiles()) { //validating file according conditions
             if (strgFile != null)
                 continue;
-            if (file.getName().length() > 10 || curStorSize + file.getSize() > storage.getStorageSize())
+            if (curStorSize + file.getSize() > storage.getStorageSize())
                 throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
         }
     }
@@ -47,18 +44,4 @@ public class Validation {
         }
         throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
     }
-
-    void putProcessing(Storage storage, File file) throws Exception {
-        int i = 0;
-        for (File strgFile : storage.getFiles()) {
-            if (strgFile == null) {
-                storage.getFiles()[i] = file;
-                System.out.println("done");
-                return;
-            } else i++;
-        }
-        if (i == storage.getFiles().length)
-            throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
-    }
-
 }

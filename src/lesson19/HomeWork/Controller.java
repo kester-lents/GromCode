@@ -18,11 +18,12 @@ public class Controller extends Validation {
 
     void put(Storage storage, File file) throws Exception {
         validationFile(storage, file);
-        putProcessing(storage,file);
+        putProcessing(storage, file);
     }
 
     void delete(Storage storage, File file) throws Exception {
-        checkForNullFile(file);
+        if (file == null)
+            throw new NullPointerException("file is null");
 
         int i = 0;
         for (File strgFile : storage.getFiles()) { //is storage consists of such file to add?
@@ -37,38 +38,23 @@ public class Controller extends Validation {
         throw new Exception("file " + file.getId() + " isn't contained in " + storage.getId());
     }
 
-    void transferAll(Storage storageFrom, Storage storageTo) throws Exception {
-        //check is in 2-nd storage enough space for transferring
-        int i = 0;
-        for (File file2 : storageTo.getFiles()) {
-            if (file2 == null)
-                i++;
+    void transferAll(Storage storageFrom, Storage storageTo) {
+
+        try {
+            for (File file : storageFrom.getFiles()) {
+                if (file != null)
+                    put(storageTo, file);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (i < storageFrom.getFiles().length)
-            throw new Exception("in storage " + storageFrom + "there aren't empty space for storage " + storageTo);
-
-
-        for (File file1 : storageFrom.getFiles()) {
-            if (file1 == null)
-                continue;
-            else
-                put(storageTo, file1);
-        }
-
     }
 
     void transferFile(Storage storageFrom, Storage storageTo, long id) throws Exception {
 
-        if (id == 0)
-            throw new NullPointerException("nothing to add");
-
         int i = 0;
         for (File file : storageFrom.getFiles()) {
-            if (file == null) {
-                i++;
-                continue;
-            }
-            if (file.getId() == id) {
+            if (file != null && file.getId() == id) {
                 put(storageTo, storageFrom.getFiles()[i]);
                 return;
             } else i++;
@@ -76,5 +62,16 @@ public class Controller extends Validation {
         throw new Exception("file with id " + id + " can't add in " + storageTo.getId());
     }
 
-
+    void putProcessing(Storage storage, File file) throws Exception {
+        int i = 0;
+        for (File strgFile : storage.getFiles()) {
+            if (strgFile == null) {
+                storage.getFiles()[i] = file;
+                System.out.println("done");
+                return;
+            } else i++;
+        }
+        if (i == storage.getFiles().length)
+            throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
+    }
 }
