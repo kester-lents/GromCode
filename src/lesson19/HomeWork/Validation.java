@@ -5,12 +5,11 @@ package lesson19.HomeWork;
  */
 public class Validation {
     void validationFile(Storage storage, File file) throws Exception {
-        if (file == null)
-            throw new NullPointerException("file is null");
-
-        findDuplicates(storage, file);
-        checkSizeFile(storage, file);
-        checkFormatFile(storage, file);
+        if (file != null) {
+            findDuplicates(storage, file);
+            checkSizeFile(storage, file);
+            checkFormatFile(storage, file);
+        }
     }
 
     void findDuplicates(Storage storage, File file) throws Exception {

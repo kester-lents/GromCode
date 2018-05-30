@@ -1,5 +1,7 @@
 package lesson20.task2;
 
+import lesson20.task2.Exception.BadRequestException;
+import lesson20.task2.Exception.InternalServerException;
 import lesson20.task2.Exception.LimitExceeded;
 
 import java.util.Calendar;
@@ -12,7 +14,7 @@ public class TransactionDAO {
     private Transaction[] transactions = new Transaction[10];
     private Utils utils = new Utils();
 
-    public Transaction save(Transaction transaction) throws LimitExceeded {
+    public Transaction save(Transaction transaction) throws Exception {
     /*
     сумма транзакции больше указанного лимита +
     сумма транзакций за день больше дневного лимита +
@@ -40,6 +42,9 @@ public class TransactionDAO {
             if (!transaction.getCity().equals(cities))
                 i++;
         }
+        if (i == utils.getCities().length)
+            throw new BadRequestException("The city in transaction " + transaction.getId() + " can't be chose");
+
 
 
 

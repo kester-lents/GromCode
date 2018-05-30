@@ -38,16 +38,33 @@ public class Controller extends Validation {
         throw new Exception("file " + file.getId() + " isn't contained in " + storage.getId());
     }
 
-    void transferAll(Storage storageFrom, Storage storageTo) {
-
-        try {
-            for (File file : storageFrom.getFiles()) {
-                if (file != null)
-                    put(storageTo, file);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    void transferAll(Storage storageFrom, Storage storageTo) throws Exception {
+        int zero = 0;
+        int notZero = 0;
+        for (File file : storageTo.getFiles()) {
+            if (file == null)
+                zero++;
         }
+        for (File file : storageFrom.getFiles()) {
+            if (file != null)
+                notZero++;
+        }
+        if (zero < notZero)
+            throw new Exception("can't add all files from storage " + storageFrom.getId() + " to storage " + storageTo.getId());
+
+        for (File file : storageFrom.getFiles()) {
+            try {
+                validationFile(storageTo, file);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return;
+            }
+        }
+        for (File file : storageFrom.getFiles()) {
+            if (file != null)
+                putProcessing(storageTo, file);
+        }
+
     }
 
     void transferFile(Storage storageFrom, Storage storageTo, long id) throws Exception {
