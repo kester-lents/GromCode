@@ -61,7 +61,11 @@ public class Controller extends Validation {
 
         for (File file : storageFrom.getFiles()) {
             try {
-                validationFile(storageTo, file);
+                if (file != null) {
+                    findDuplicates(storageTo, file);
+                    checkSizeStorage(storageFrom, storageTo);
+                    checkFormatFile(storageTo, file);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 return;
@@ -71,7 +75,6 @@ public class Controller extends Validation {
             if (file != null)
                 putProcessing(storageTo, file);
         }
-
     }
 
     void transferFile(Storage storageFrom, Storage storageTo, long id) throws Exception {

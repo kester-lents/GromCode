@@ -38,4 +38,20 @@ public class Validation {
         }
         throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
     }
+
+    void checkSizeStorage(Storage storageFrom, Storage storageTo) throws Exception {
+        long curStorFromSize = 0;
+        long curStorToSize = 0;
+        for (File file1 : storageFrom.getFiles()) { //calculating current size of storage
+            if (file1 != null)
+                curStorFromSize += file1.getSize();
+        }
+        for (File file1 : storageTo.getFiles()) { //calculating current size of storage
+            if (file1 != null)
+                curStorToSize += file1.getSize();
+        }
+        if (storageTo.getStorageSize() - curStorToSize < curStorFromSize)
+            throw new Exception("storage " + storageTo.getId() + " hasn't enough empty space " +
+                    "for transferring all of files of storage " + storageFrom.getId());
+    }
 }

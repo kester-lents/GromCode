@@ -14,10 +14,10 @@ public class Demo {
         File file4 = new File(123453254, "Ruslan", "exe", 123);
         File file5 = new File(12345634, "Ruslan1", "jpg", 1234);
         File file6 = new File(123452347, "Ruslan2", "jar", 1235);
-        Storage storage1 = new Storage(12345, new File[]{file4, file5, null, file6, fileForChecking}, new String[]{"jpg", "exe", "jar"},
+        Storage storage1 = new Storage(12345, new File[]{file4, file5, null, file6, null}, new String[]{"jpg", "exe", "jar"},
                 "Ukraine", 2353245);
         Storage storage2 = new Storage(100000, new File[]{file1, file2, file3, null, null, null}, new String[]{"jpg", "exe", "jar"},
-                "Ukraine", 2353245);
+                "Ukraine", 235345654);
         Storage storage3 = new Storage(12345, new File[]{file1, file2, file3}, new String[]{"jpg", "exe", "jar"},
                 "Ukraine", 2353245);
 
