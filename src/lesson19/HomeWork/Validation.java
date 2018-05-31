@@ -29,16 +29,6 @@ public class Validation {
             throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
     }
 
-    void checkFormatFile(Storage storage, File file) throws Exception {
-
-        //is format of file suitable for adding in storage?
-        for (String format : storage.getFormatsSupported()) {
-            if (file.getFormat().equals(format))
-                return;
-        }
-        throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
-    }
-
     void checkSizeStorage(Storage storageFrom, Storage storageTo) throws Exception {
         long curStorFromSize = 0;
         long curStorToSize = 0;
@@ -53,5 +43,15 @@ public class Validation {
         if (storageTo.getStorageSize() - curStorToSize < curStorFromSize)
             throw new Exception("storage " + storageTo.getId() + " hasn't enough empty space " +
                     "for transferring all of files of storage " + storageFrom.getId());
+    }
+
+    void checkFormatFile(Storage storage, File file) throws Exception {
+
+        //is format of file suitable for adding in storage?
+        for (String format : storage.getFormatsSupported()) {
+            if (file.getFormat().equals(format))
+                return;
+        }
+        throw new Exception("file " + file.getId() + " can't add in " + storage.getId());
     }
 }
