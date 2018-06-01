@@ -1,5 +1,6 @@
 package lesson20.task2_withHomework;
 
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -17,6 +18,11 @@ public class Demo {
                 TransactionType.INCOME, new Date());
         TransactionDAO trDAO = new TransactionDAO();
         Controller controller = new Controller();
+        trDAO.transactionList()[0] = tr1;
+        trDAO.transactionList()[1] = tr2;
+        trDAO.transactionList()[2] = tr3;
+        System.out.println(Arrays.toString(trDAO.transactionList()));
+
         try {
             controller.save(tr123);
         } catch (Exception e) {
