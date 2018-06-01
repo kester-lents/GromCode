@@ -8,23 +8,14 @@ import java.util.Date;
  */
 public class Demo {
     public static void main(String[] args) {
-        Transaction tr1 = new Transaction(1213, "Kiev", 4, "for drugs",
-                TransactionType.OUTCOME, new Date());
-        Transaction tr2 = new Transaction(1214, "Odessa", 35, "for drugs",
-                TransactionType.OUTCOME, new Date());
-        Transaction tr3 = new Transaction(1215, "Kiev1", 0, "for drugs",
-                TransactionType.INCOME, new Date());
         Transaction tr123 = new Transaction(1213455, "i;ohlgi", 40, "for drugs",
                 TransactionType.INCOME, new Date());
         TransactionDAO trDAO = new TransactionDAO();
-        Controller controller = new Controller();
-        trDAO.transactionList()[0] = tr1;
-        trDAO.transactionList()[1] = tr2;
-        trDAO.transactionList()[2] = tr3;
-        System.out.println(Arrays.toString(trDAO.transactionList()));
 
         try {
-            controller.save(tr123);
+            //System.out.println(Arrays.toString();
+            trDAO.save(new Transaction(1213, "Kiev", 4, "for drugs",
+                    TransactionType.OUTCOME, new Date()));
         } catch (Exception e) {
             e.printStackTrace();
         }
