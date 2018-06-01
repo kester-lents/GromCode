@@ -17,7 +17,6 @@ public class Demo {
                 TransactionType.INCOME, new Date());
         TransactionDAO trDAO = new TransactionDAO();
         Controller controller = new Controller();
-        trDAO.setTransactions(new Transaction[]{tr1, tr2, tr3, null});
         try {
             controller.save(tr123);
         } catch (Exception e) {

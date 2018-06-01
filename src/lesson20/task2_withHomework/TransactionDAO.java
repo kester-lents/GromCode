@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class TransactionDAO {
     private Transaction[] transactions = new Transaction[10];
+
     private Utils utils = new Utils();
 
     public Transaction save(Transaction transaction) throws Exception {
@@ -66,9 +67,7 @@ public class TransactionDAO {
 
     void findDuplicates(Transaction transaction) throws Exception {
         for (Transaction tr : transactions) {
-            if (tr != null && tr.getAmount() == transaction.getAmount() && tr.getCity().equals(transaction.getCity()) &&
-                    tr.getId() == tr.getId() && tr.getDescription().equals(transaction.getDescription()) &&
-                    tr.getType().equals(transaction.getType()))
+            if (tr != null && tr.equals(transaction))
                 throw new BadRequestException("transaction " + transaction.getId() + " is already existed in array");
         }
     }
@@ -147,10 +146,6 @@ public class TransactionDAO {
 
         }
         return result;
-    }
-
-    public void setTransactions(Transaction[] transactions) {
-        this.transactions = transactions;
     }
 
     public Transaction[] getTransactions() {
