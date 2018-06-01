@@ -13,6 +13,12 @@ import java.util.Date;
  */
 public class TransactionDAO {
     private Transaction[] transactions = new Transaction[10];
+    Transaction tr1 = new Transaction(121345, "Odessa", 34, "for drugs",
+            TransactionType.OUTCOME, new Date());
+    Transaction tr2 = new Transaction(1214, "Odessa", 35, "for drugs",
+            TransactionType.OUTCOME, new Date());
+    Transaction tr3 = new Transaction(1215, "Kiev1", 0, "for drugs",
+            TransactionType.INCOME, new Date());
 
     private Utils utils = new Utils();
 
@@ -73,7 +79,8 @@ public class TransactionDAO {
     }
 
     Transaction[] transactionList() {
-
+        transactions = new Transaction[]{tr1, tr2, tr3};
+        System.out.println(Arrays.toString(transactions));
         return transactions;
     }
 
