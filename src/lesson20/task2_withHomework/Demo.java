@@ -17,6 +17,7 @@ public class Demo {
                 TransactionType.OUTCOME, new Date());
         Transaction tr3 = new Transaction(1215, "Kiev1", 0, "for drugs",
                 TransactionType.INCOME, new Date());
+        trDAO.setTransactions(new Transaction[]{tr1, tr2, tr3});
 
         try {
             //System.out.println(Arrays.toString();
