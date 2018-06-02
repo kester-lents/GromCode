@@ -47,10 +47,8 @@ public class TransactionDAO {
         int sum = 0;
         int count = 0;
         for (Transaction tr : getTransactionsPerDay(transaction.getDateCreated())) {
-            if (tr != null) {
-                sum += tr.getAmount();
-                count++;
-            }
+            sum += tr.getAmount();
+            count++;
         }
         if (sum > utils.getLimitTransactionsPerDayAmount())
             throw new LimitExceeded("Transaction limit per day amount exceed " + transaction.getId() + " can't be saved");
@@ -68,7 +66,7 @@ public class TransactionDAO {
     }
 
     void findDuplicates(Transaction transaction) throws Exception {
-        for (Transaction tr : transactionList()) {
+        for (Transaction tr : transactions) {
             if (tr != null && tr.equals(transaction))
                 throw new BadRequestException("transaction " + transaction.getId() + " is already existed in array");
         }
