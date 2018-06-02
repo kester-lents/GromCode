@@ -29,12 +29,12 @@ public class TransactionDAO {
             if (tr == null) {
                 transactions[index] = transaction;
                 System.out.println("done");
-                return transactions[index];
+                break;
             } else index++;
         }
         if (index == transactions.length)
             throw new InternalServerException("There aren't enough space to save transaction " + transaction.getId());
-        return null;
+        return transactions[index];
     }
 
     private void validate(Transaction transaction) throws Exception {
@@ -78,8 +78,7 @@ public class TransactionDAO {
         }
     }
 
-    Transaction[] transactionList() {
-        //transactions = new Transaction[]{tr1, tr2, tr3};
+    Transaction[] transactionList() throws Exception{
         System.out.println(Arrays.toString(transactions));
         return transactions;
     }
@@ -87,14 +86,14 @@ public class TransactionDAO {
     Transaction[] transactionList(String city) throws BadRequestException {
         int i = 0;
         int index = 0;
-        for (Transaction tr : transactionList()) {
+        for (Transaction tr : transactions) {
             if (tr != null && tr.getCity().equals(city))
                 i++;
         }
         if (i == 0)
             throw new BadRequestException("There aren't transactions with city " + city);
         Transaction[] result = new Transaction[i];
-        for (Transaction tr : transactionList()) {
+        for (Transaction tr : transactions) {
             if (tr != null && tr.getCity().equals(city))
                 result[index] = tr;
         }
@@ -105,14 +104,14 @@ public class TransactionDAO {
     Transaction[] transactionList(int amount) throws BadRequestException {
         int i = 0;
         int index = 0;
-        for (Transaction tr : transactionList()) {
+        for (Transaction tr : transactions) {
             if (tr != null && tr.getAmount() == amount)
                 i++;
         }
         if (i == 0)
             throw new BadRequestException("There aren't transactions with amount " + amount);
         Transaction[] result = new Transaction[i];
-        for (Transaction tr : transactionList()) {
+        for (Transaction tr : transactions) {
             if (tr != null && tr.getAmount() == amount)
                 result[index++] = tr;
         }
@@ -155,9 +154,6 @@ public class TransactionDAO {
         return result;
     }
 
-    public void setTransactions(Transaction[] transactions) {
-        this.transactions = transactions;
-    }
 }
 
 
