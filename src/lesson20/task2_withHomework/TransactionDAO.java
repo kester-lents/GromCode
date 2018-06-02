@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class TransactionDAO {
     private Transaction[] transactions = new Transaction[10];
+    Transaction[] trans = new Transaction[0];
 
     private Utils utils = new Utils();
 
@@ -79,8 +80,10 @@ public class TransactionDAO {
             if (tr != null)
                 i++;
         }
-        if (i == 0) //TODO
+        if (i == 0) {//TODO
+            System.out.println(Arrays.toString(transactions));
             return transactions;
+        }
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
             if (tr != null)
@@ -88,13 +91,13 @@ public class TransactionDAO {
         }
         System.out.println("result");
         System.out.println(Arrays.toString(result));
-        return result;
+        return transactions;
     }
 
     Transaction[] transactionList(String city) {
         int i = 0;
         int index = 0;
-        for (Transaction tr : transactions) {
+        for (Transaction tr : transactionList()) {
             if (tr != null && tr.getCity().equals(city))
                 i++;
         }

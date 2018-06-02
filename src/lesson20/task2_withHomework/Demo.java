@@ -19,14 +19,14 @@ public class Demo {
                 TransactionType.INCOME, new Date());
         Controller controller = new Controller();
 
-
+        trDAO.transactionList("345");
         try {
             //System.out.println(Arrays.toString();
-            controller.save(tr1);
-            controller.save(tr2);
+            /*controller.save(tr1);
+            controller.save(tr2);*/
             /*trDAO.save(tr2);
             trDAO.transactionList();*/
-            controller.transactionList();
+
             /*trDAO.save(new Transaction(1213, "Kiev", 4, "for drugs",
                     TransactionType.OUTCOME, new Date()));*/
         } catch (Exception e) {
