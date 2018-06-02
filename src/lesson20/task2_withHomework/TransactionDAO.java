@@ -72,8 +72,8 @@ public class TransactionDAO {
         }
     }
 
-    Transaction[] transactionList() throws Exception {
-        System.out.println(Arrays.toString(transactions));
+    Transaction[] transactionList() {
+        //System.out.println(Arrays.toString(transactions));
         return transactions;
     }
 
