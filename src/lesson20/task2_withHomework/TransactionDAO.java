@@ -12,13 +12,7 @@ import java.util.Date;
  * Created by Ruslan on 29.05.2018.
  */
 public class TransactionDAO {
-    private Transaction[] transactions = new Transaction[2];
-    Transaction tr1 = new Transaction(121345, "Odessa", 34, "for drugs",
-            TransactionType.OUTCOME, new Date());
-    Transaction tr2 = new Transaction(1214, "Odessa", 35, "for drugs",
-            TransactionType.OUTCOME, new Date());
-    Transaction tr3 = new Transaction(1215, "Kiev1", 0, "for drugs",
-            TransactionType.INCOME, new Date());
+    private Transaction[] transactions = new Transaction[10];
 
     private Utils utils = new Utils();
 
@@ -64,7 +58,7 @@ public class TransactionDAO {
 
         int i = 0;
         for (String cities : utils.getCities()) {
-            if (transaction.getType() == TransactionType.OUTCOME && !transaction.getCity().equals(cities))
+            if (/*transaction.getType() == TransactionType.OUTCOME &&*/ !transaction.getCity().equals(cities))
                 i++;
         }
         if (i == utils.getCities().length)
