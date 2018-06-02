@@ -12,7 +12,7 @@ import java.util.Date;
  * Created by Ruslan on 29.05.2018.
  */
 public class TransactionDAO {
-    private Transaction[] transactions = new Transaction[10];
+    private Transaction[] transactions = new Transaction[2];
     Transaction tr1 = new Transaction(121345, "Odessa", 34, "for drugs",
             TransactionType.OUTCOME, new Date());
     Transaction tr2 = new Transaction(1214, "Odessa", 35, "for drugs",
@@ -29,12 +29,12 @@ public class TransactionDAO {
             if (tr == null) {
                 transactions[index] = transaction;
                 System.out.println("done");
-                break;
+                return transactions[index];
             } else index++;
         }
         if (index == transactions.length)
             throw new InternalServerException("There aren't enough space to save transaction " + transaction.getId());
-        return transactions[index];
+        return null;
     }
 
     private void validate(Transaction transaction) throws Exception {

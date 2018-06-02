@@ -13,7 +13,7 @@ public class Demo {
         TransactionDAO trDAO = new TransactionDAO();
         Transaction tr1 = new Transaction(121345, "Odessa", 34, "for drugs",
                 TransactionType.OUTCOME, new Date());
-        Transaction tr2 = new Transaction(1214, "Odess", 35, "for drugs",
+        Transaction tr2 = new Transaction(1214, "Odessa", 35, "for drugs",
                 TransactionType.OUTCOME, new Date());
         Transaction tr3 = new Transaction(1215, "Kiev1", 0, "for drugs",
                 TransactionType.INCOME, new Date());
@@ -23,6 +23,7 @@ public class Demo {
             //System.out.println(Arrays.toString();
             trDAO.save(tr1);
             trDAO.save(tr2);
+
             trDAO.transactionList();
             /*trDAO.save(new Transaction(1213, "Kiev", 4, "for drugs",
                     TransactionType.OUTCOME, new Date()));*/
