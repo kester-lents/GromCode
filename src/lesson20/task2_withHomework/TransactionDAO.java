@@ -89,8 +89,9 @@ public class TransactionDAO {
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
             if (tr != null && tr.getCity().equals(city))
-                result[index] = tr;
+                result[index++] = tr;
         }
+        System.out.println("result");
         System.out.println(Arrays.toString(result));
         return result;
     }

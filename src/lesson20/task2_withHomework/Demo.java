@@ -22,9 +22,10 @@ public class Demo {
         try {
             //System.out.println(Arrays.toString();
             trDAO.save(tr1);
-            trDAO.save(tr2);
+            /*trDAO.save(tr2);
 
-            trDAO.transactionList();
+            trDAO.transactionList();*/
+            trDAO.transactionList("Odessa");
             /*trDAO.save(new Transaction(1213, "Kiev", 4, "for drugs",
                     TransactionType.OUTCOME, new Date()));*/
         } catch (Exception e) {
