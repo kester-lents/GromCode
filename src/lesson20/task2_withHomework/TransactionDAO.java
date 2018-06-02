@@ -72,15 +72,15 @@ public class TransactionDAO {
         }
     }
 
-    Transaction[] transactionList() throws Exception {
+    Transaction[] transactionList() {
         int i = 0;
         int index = 0;
         for (Transaction tr : transactions) {
             if (tr != null)
                 i++;
         }
-        if (i == 0)
-            throw new BadRequestException("There aren't transactions in array");
+        if (i == 0) //TODO
+            return transactions;
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
             if (tr != null)
@@ -91,7 +91,7 @@ public class TransactionDAO {
         return result;
     }
 
-    Transaction[] transactionList(String city) throws BadRequestException {
+    Transaction[] transactionList(String city) {
         int i = 0;
         int index = 0;
         for (Transaction tr : transactions) {
@@ -99,7 +99,7 @@ public class TransactionDAO {
                 i++;
         }
         if (i == 0)
-            throw new BadRequestException("There aren't transactions with city " + city);
+            return transactions;
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
             if (tr != null && tr.getCity().equals(city))
@@ -110,7 +110,7 @@ public class TransactionDAO {
         return result;
     }
 
-    Transaction[] transactionList(int amount) throws BadRequestException {
+    Transaction[] transactionList(int amount) {
         int i = 0;
         int index = 0;
         for (Transaction tr : transactions) {
@@ -118,7 +118,7 @@ public class TransactionDAO {
                 i++;
         }
         if (i == 0)
-            throw new BadRequestException("There aren't transactions with amount " + amount);
+            return transactions;
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
             if (tr != null && tr.getAmount() == amount)
