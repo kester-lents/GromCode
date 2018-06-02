@@ -17,15 +17,16 @@ public class Demo {
                 TransactionType.OUTCOME, new Date());
         Transaction tr3 = new Transaction(1215, "Kiev1", 0, "for drugs",
                 TransactionType.INCOME, new Date());
+        Controller controller = new Controller();
 
 
         try {
             //System.out.println(Arrays.toString();
-            trDAO.save(tr1);
-            trDAO.save(tr2);
+            controller.save(tr1);
+            controller.save(tr2);
             /*trDAO.save(tr2);
             trDAO.transactionList();*/
-            trDAO.transactionList();
+            controller.transactionList();
             /*trDAO.save(new Transaction(1213, "Kiev", 4, "for drugs",
                     TransactionType.OUTCOME, new Date()));*/
         } catch (Exception e) {

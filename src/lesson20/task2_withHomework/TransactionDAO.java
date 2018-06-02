@@ -72,22 +72,36 @@ public class TransactionDAO {
         }
     }
 
-    Transaction[] transactionList() {
-        //System.out.println(Arrays.toString(transactions));
-        return transactions;
+    Transaction[] transactionList() throws Exception {
+        int i = 0;
+        int index = 0;
+        for (Transaction tr : transactions) {
+            if (tr != null)
+                i++;
+        }
+        if (i == 0)
+            throw new BadRequestException("There aren't transactions in array");
+        Transaction[] result = new Transaction[i];
+        for (Transaction tr : transactions) {
+            if (tr != null)
+                result[index++] = tr;
+        }
+        System.out.println("result");
+        System.out.println(Arrays.toString(result));
+        return result;
     }
 
     Transaction[] transactionList(String city) throws BadRequestException {
         int i = 0;
         int index = 0;
-        for (Transaction tr : transactionList()) {
+        for (Transaction tr : transactions) {
             if (tr != null && tr.getCity().equals(city))
                 i++;
         }
         if (i == 0)
             throw new BadRequestException("There aren't transactions with city " + city);
         Transaction[] result = new Transaction[i];
-        for (Transaction tr : transactionList()) {
+        for (Transaction tr : transactions) {
             if (tr != null && tr.getCity().equals(city))
                 result[index++] = tr;
         }
@@ -99,14 +113,14 @@ public class TransactionDAO {
     Transaction[] transactionList(int amount) throws BadRequestException {
         int i = 0;
         int index = 0;
-        for (Transaction tr : transactionList()) {
+        for (Transaction tr : transactions) {
             if (tr != null && tr.getAmount() == amount)
                 i++;
         }
         if (i == 0)
             throw new BadRequestException("There aren't transactions with amount " + amount);
         Transaction[] result = new Transaction[i];
-        for (Transaction tr : transactionList()) {
+        for (Transaction tr : transactions) {
             if (tr != null && tr.getAmount() == amount)
                 result[index++] = tr;
         }
