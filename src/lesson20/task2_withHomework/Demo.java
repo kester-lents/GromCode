@@ -24,9 +24,8 @@ public class Demo {
             trDAO.save(tr1);
             trDAO.save(tr2);
             /*trDAO.save(tr2);
-
             trDAO.transactionList();*/
-            trDAO.transactionList("Odessa");
+            trDAO.transactionList();
             /*trDAO.save(new Transaction(1213, "Kiev", 4, "for drugs",
                     TransactionType.OUTCOME, new Date()));*/
         } catch (Exception e) {
