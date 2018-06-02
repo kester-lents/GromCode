@@ -81,8 +81,8 @@ public class TransactionDAO {
                 i++;
         }
         if (i == 0) {//TODO
-            System.out.println(Arrays.toString(transactions));
-            return transactions;
+            System.out.println(Arrays.toString(trans));
+            return trans;
         }
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
@@ -98,14 +98,14 @@ public class TransactionDAO {
         int i = 0;
         int index = 0;
         for (Transaction tr : transactionList()) {
-            if (tr != null && tr.getCity().equals(city))
+            if (tr.getCity().equals(city))
                 i++;
         }
         if (i == 0)
-            return transactions;
+            return trans;
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
-            if (tr != null && tr.getCity().equals(city))
+            if (tr.getCity().equals(city))
                 result[index++] = tr;
         }
         System.out.println("result");
@@ -117,14 +117,14 @@ public class TransactionDAO {
         int i = 0;
         int index = 0;
         for (Transaction tr : transactions) {
-            if (tr != null && tr.getAmount() == amount)
+            if (tr.getAmount() == amount)
                 i++;
         }
         if (i == 0)
-            return transactions;
+            return trans;
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
-            if (tr != null && tr.getAmount() == amount)
+            if (tr.getAmount() == amount)
                 result[index++] = tr;
         }
         System.out.println(Arrays.toString(result));
