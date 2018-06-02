@@ -22,6 +22,7 @@ public class Demo {
         try {
             //System.out.println(Arrays.toString();
             trDAO.save(tr1);
+            trDAO.save(tr2);
             /*trDAO.save(tr2);
 
             trDAO.transactionList();*/

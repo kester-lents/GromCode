@@ -23,12 +23,12 @@ public class TransactionDAO {
             if (tr == null) {
                 transactions[index] = transaction;
                 System.out.println("done");
-                return transactions[index];
+                break;
             } else index++;
         }
         if (index == transactions.length)
             throw new InternalServerException("There aren't enough space to save transaction " + transaction.getId());
-        return null;
+        return transactions[index];
     }
 
     private void validate(Transaction transaction) throws Exception {
@@ -47,8 +47,10 @@ public class TransactionDAO {
         int sum = 0;
         int count = 0;
         for (Transaction tr : getTransactionsPerDay(transaction.getDateCreated())) {
-            sum += tr.getAmount();
-            count++;
+            if (tr != null) {
+                sum += tr.getAmount();
+                count++;
+            }
         }
         if (sum > utils.getLimitTransactionsPerDayAmount())
             throw new LimitExceeded("Transaction limit per day amount exceed " + transaction.getId() + " can't be saved");
@@ -72,7 +74,7 @@ public class TransactionDAO {
         }
     }
 
-    Transaction[] transactionList() throws Exception{
+    Transaction[] transactionList() throws Exception {
         System.out.println(Arrays.toString(transactions));
         return transactions;
     }
