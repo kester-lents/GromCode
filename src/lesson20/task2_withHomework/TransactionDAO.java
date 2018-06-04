@@ -12,6 +12,7 @@ import java.util.Date;
  * Created by Ruslan on 29.05.2018.
  */
 public class TransactionDAO {
+
     private Transaction[] transactions = new Transaction[10];
     private Utils utils = new Utils();
 
@@ -79,13 +80,13 @@ public class TransactionDAO {
     void checkTransactionCity(Transaction transaction) throws BadRequestException {
         int i = 0;
         for (String city : utils.getCities()) {
-            if (!(transaction.getCity().equals(city) && transaction.getType() == TransactionType.OUTCOME)
-                    && !(transaction.getType() == TransactionType.INCOME))
-                i++;
+            if (transaction.getCity().equals(city) || transaction.getType() == TransactionType.INCOME)
+                break;
+            else i++;
         }
         if (i == utils.getCities().length)
             throw new BadRequestException("The city in transaction " + transaction.getId() + " can't be chose");
-        System.out.println("done");
+        System.out.println("done city");
     }
 
     Transaction[] transactionList() {
