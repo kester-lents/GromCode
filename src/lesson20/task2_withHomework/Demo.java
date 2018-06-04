@@ -20,6 +20,7 @@ public class Demo {
 
         try {
             trDAO.checkTransactionCity(tr2);
+            System.out.println();
         } catch (Exception e) {
             e.printStackTrace();
         }
