@@ -19,9 +19,7 @@ public class Demo {
                 TransactionType.INCOME, new Date());
 
         try {
-
-            trDAO.save(tr123);
-
+            trDAO.checkTransactionCity(tr2);
         } catch (Exception e) {
             e.printStackTrace();
         }
