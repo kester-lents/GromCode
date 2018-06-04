@@ -24,8 +24,8 @@ public class Demo {
             //System.out.println(Arrays.toString();
             /*controller.save(tr1);
             controller.save(tr2);*/
-            trDAO.save(tr1);
-            trDAO.transactionList(34);
+            trDAO.save(tr2);
+            trDAO.transactionList();
 
             /*trDAO.save(new Transaction(1213, "Kiev", 4, "for drugs",
                     TransactionType.OUTCOME, new Date()));*/

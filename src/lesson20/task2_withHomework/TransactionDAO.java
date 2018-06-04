@@ -13,11 +13,14 @@ import java.util.Date;
  */
 public class TransactionDAO {
     private Transaction[] transactions = new Transaction[10];
-
     private Utils utils = new Utils();
 
     public Transaction save(Transaction transaction) throws Exception {
+        if (transaction == null)
+            throw new NullPointerException("Транзакция равна null");
+
         validate(transaction);
+
         int index = 0;
         for (Transaction tr : transactions) {
             if (tr == null) {
@@ -29,6 +32,28 @@ public class TransactionDAO {
         if (index == transactions.length)
             throw new InternalServerException("There aren't enough space to save transaction " + transaction.getId());
         return transactions[index];
+    }
+
+    private void validate(Transaction transaction) throws Exception {
+        /*
+        если есть дубликаты +
+    сумма транзакции больше указанного лимита +
+    сумма транзакций за день больше дневного лимита +
+    количество транзакций за день больше указанного лимита +
+    если город оплаты (совершения транзакции) не разрешен
+    не хватило места в массиве
+    */
+        findDuplicates(transaction);
+        checkTransactionAmount(transaction);
+        checkTransactionDayAmountAndCount(transaction);
+        checkTransactionCity(transaction);
+    }
+
+    void findDuplicates(Transaction transaction) throws Exception {
+        for (Transaction tr : transactions) {
+            if (tr != null && tr.equals(transaction))
+                throw new BadRequestException("transaction " + transaction.getId() + " is already existed in array");
+        }
     }
 
     void checkTransactionAmount(Transaction transaction) throws LimitExceeded {
@@ -59,28 +84,6 @@ public class TransactionDAO {
         }
         if (i == utils.getCities().length)
             throw new BadRequestException("The city in transaction " + transaction.getId() + " can't be chose");
-    }
-
-    private void validate(Transaction transaction) throws Exception {
-        /*
-        если есть дубликаты +
-    сумма транзакции больше указанного лимита +
-    сумма транзакций за день больше дневного лимита +
-    количество транзакций за день больше указанного лимита +
-    если город оплаты (совершения транзакции) не разрешен
-    не хватило места в массиве
-    */
-        findDuplicates(transaction);
-        checkTransactionAmount(transaction);
-        checkTransactionDayAmountAndCount(transaction);
-        checkTransactionCity(transaction);
-    }
-
-    void findDuplicates(Transaction transaction) throws Exception {
-        for (Transaction tr : transactions) {
-            if (tr != null && tr.equals(transaction))
-                throw new BadRequestException("transaction " + transaction.getId() + " is already existed in array");
-        }
     }
 
     Transaction[] transactionList() {
