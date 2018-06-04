@@ -13,7 +13,6 @@ import java.util.Date;
  */
 public class TransactionDAO {
     private Transaction[] transactions = new Transaction[10];
-    Transaction[] trans = new Transaction[0];
 
     private Utils utils = new Utils();
 
@@ -32,19 +31,12 @@ public class TransactionDAO {
         return transactions[index];
     }
 
-    private void validate(Transaction transaction) throws Exception {
-        /*
-        если есть дубликаты +
-    сумма транзакции больше указанного лимита +
-    сумма транзакций за день больше дневного лимита +
-    количество транзакций за день больше указанного лимита +
-    если город оплаты (совершения транзакции) не разрешен
-    не хватило места в массиве
-    */
-        findDuplicates(transaction);
+    void checkTransactionAmount(Transaction transaction) throws LimitExceeded {
         if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
             throw new LimitExceeded("Transaction limit exceed " + transaction.getId() + " can't be saved");
+    }
 
+    void checkTransactionDayAmountAndCount(Transaction transaction) throws LimitExceeded {
         int sum = 0;
         int count = 0;
         for (Transaction tr : getTransactionsPerDay(transaction.getDateCreated())) {
@@ -57,13 +49,31 @@ public class TransactionDAO {
         if (count + 1 > utils.getLimitTransactionsPerDayCount())
             throw new LimitExceeded("Transaction limit per day count exceed " + transaction.getId() + " can't be saved");
 
+    }
+
+    void checkTransactionCity(Transaction transaction) throws BadRequestException {
         int i = 0;
         for (String cities : utils.getCities()) {
-            if (/*transaction.getType() == TransactionType.OUTCOME &&*/ !transaction.getCity().equals(cities))
+            if (!transaction.getCity().equals(cities))
                 i++;
         }
         if (i == utils.getCities().length)
             throw new BadRequestException("The city in transaction " + transaction.getId() + " can't be chose");
+    }
+
+    private void validate(Transaction transaction) throws Exception {
+        /*
+        если есть дубликаты +
+    сумма транзакции больше указанного лимита +
+    сумма транзакций за день больше дневного лимита +
+    количество транзакций за день больше указанного лимита +
+    если город оплаты (совершения транзакции) не разрешен
+    не хватило места в массиве
+    */
+        findDuplicates(transaction);
+        checkTransactionAmount(transaction);
+        checkTransactionDayAmountAndCount(transaction);
+        checkTransactionCity(transaction);
     }
 
     void findDuplicates(Transaction transaction) throws Exception {
@@ -80,16 +90,11 @@ public class TransactionDAO {
             if (tr != null)
                 i++;
         }
-        if (i == 0) {//TODO
-            System.out.println(Arrays.toString(trans));
-            return trans;
-        }
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
             if (tr != null)
                 result[index++] = tr;
         }
-        System.out.println("result");
         System.out.println(Arrays.toString(result));
         return transactions;
     }
@@ -97,18 +102,15 @@ public class TransactionDAO {
     Transaction[] transactionList(String city) {
         int i = 0;
         int index = 0;
-        for (Transaction tr : transactionList()) {
-            if (tr.getCity().equals(city))
+        for (Transaction tr : transactions) {
+            if (tr != null && tr.getCity().equals(city))
                 i++;
         }
-        if (i == 0)
-            return trans;
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
-            if (tr.getCity().equals(city))
+            if (tr != null && tr.getCity().equals(city))
                 result[index++] = tr;
         }
-        System.out.println("result");
         System.out.println(Arrays.toString(result));
         return result;
     }
@@ -117,14 +119,12 @@ public class TransactionDAO {
         int i = 0;
         int index = 0;
         for (Transaction tr : transactions) {
-            if (tr.getAmount() == amount)
+            if (tr != null && tr.getAmount() == amount)
                 i++;
         }
-        if (i == 0)
-            return trans;
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
-            if (tr.getAmount() == amount)
+            if (tr != null && tr.getAmount() == amount)
                 result[index++] = tr;
         }
         System.out.println(Arrays.toString(result));
