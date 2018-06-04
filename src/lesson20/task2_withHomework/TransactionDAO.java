@@ -78,12 +78,14 @@ public class TransactionDAO {
 
     void checkTransactionCity(Transaction transaction) throws BadRequestException {
         int i = 0;
-        for (String cities : utils.getCities()) {
-            if (!transaction.getCity().equals(cities))
+        for (String city : utils.getCities()) {
+            if (!(transaction.getCity().equals(city) && transaction.getType() == TransactionType.OUTCOME)
+                    && !(transaction.getType() == TransactionType.INCOME))
                 i++;
         }
         if (i == utils.getCities().length)
             throw new BadRequestException("The city in transaction " + transaction.getId() + " can't be chose");
+        System.out.println("done");
     }
 
     Transaction[] transactionList() {
