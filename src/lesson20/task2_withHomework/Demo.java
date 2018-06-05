@@ -15,11 +15,14 @@ public class Demo {
                 TransactionType.INCOME, new Date());
         Transaction tr2 = new Transaction(1214, "Odessa", 35, "for drugs",
                 TransactionType.OUTCOME, new Date());
-        Transaction tr3 = new Transaction(1215, "Kiev1", 0, "for drugs",
+        Transaction tr3 = new Transaction(1215, "Kiev", 0, "for drugs",
                 TransactionType.INCOME, new Date());
 
         try {
-            trDAO.checkTransactionCity(tr2);
+            trDAO.save(tr2);
+            trDAO.save(tr3);
+            trDAO.transactionList();
+
             System.out.println();
         } catch (Exception e) {
             e.printStackTrace();

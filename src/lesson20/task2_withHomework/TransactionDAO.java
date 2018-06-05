@@ -85,7 +85,7 @@ public class TransactionDAO {
         }
         if (i == utils.getCities().length)
             throw new BadRequestException("The city in transaction " + transaction.getId() + " can't be chose");
-        System.out.println("done city");
+        //System.out.println("done city");
     }
 
     Transaction[] transactionList() {
@@ -101,7 +101,7 @@ public class TransactionDAO {
                 result[index++] = tr;
         }
         System.out.println(Arrays.toString(result));
-        return transactions;
+        return result;
     }
 
     Transaction[] transactionList(String city) {
