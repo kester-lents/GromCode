@@ -11,7 +11,7 @@ public class Demo {
         TransactionDAO trDAO = new TransactionDAO();
         Transaction tr123 = new Transaction(1213455, "i;ohlgi", 40, "for drugs",
                 TransactionType.OUTCOME, new Date());
-        Transaction tr1 = new Transaction(121345, "Odessa", 34, "for drugs",
+        Transaction tr1 = new Transaction(121345, null, 34, "for drugs",
                 TransactionType.INCOME, new Date());
         Transaction tr2 = new Transaction(1214, "Odessa", 35, "for drugs",
                 TransactionType.OUTCOME, new Date());
@@ -19,9 +19,8 @@ public class Demo {
                 TransactionType.INCOME, new Date());
 
         try {
-            trDAO.save(tr2);
-            trDAO.save(tr3);
-            trDAO.save(tr1);
+            trDAO.checkTransactionCity(tr2);
+
             System.out.println();
         } catch (Exception e) {
             e.printStackTrace();
