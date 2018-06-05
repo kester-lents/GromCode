@@ -27,12 +27,12 @@ public class TransactionDAO {
             if (tr == null) {
                 transactions[index] = transaction;
                 System.out.println("done");
-                break;
+                return transactions[index];
             } else index++;
         }
-        if (index == transactions.length)
-            throw new InternalServerException("There aren't enough space to save transaction " + transaction.getId());
-        return transactions[index];
+
+        throw new InternalServerException("There aren't enough space to save transaction " + transaction.getId());
+
     }
 
     private void validate(Transaction transaction) throws Exception {
