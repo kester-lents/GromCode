@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class TransactionDAO {
 
-    private Transaction[] transactions = new Transaction[2];
+    private Transaction[] transactions = new Transaction[10];
     private Utils utils = new Utils();
 
     public Transaction save(Transaction transaction) throws Exception {
@@ -27,10 +27,12 @@ public class TransactionDAO {
             if (tr == null) {
                 transactions[index] = transaction;
                 System.out.println("done");
-                return transactions[index];
+                break;
             } else index++;
         }
-        throw new InternalServerException("There aren't enough space to save transaction " + transaction.getId());
+        if (index == transactions.length)
+            throw new InternalServerException("There aren't enough space to save transaction " + transaction.getId());
+        return transactions[index];
     }
 
     private void validate(Transaction transaction) throws Exception {
