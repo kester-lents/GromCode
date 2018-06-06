@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by Ruslan on 31.05.2018.
  */
-public class Demo {
+public class Demo  {
     public static void main(String[] args) {
         TransactionDAO trDAO = new TransactionDAO();
         Transaction tr123 = new Transaction(1213455, "i;ohlgi", 40, "for drugs",
@@ -21,9 +21,7 @@ public class Demo {
         try {
             trDAO.save(tr2);
             trDAO.save(tr3);
-            trDAO.transactionList();
 
-            System.out.println();
         } catch (Exception e) {
             e.printStackTrace();
         }

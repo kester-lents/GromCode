@@ -16,6 +16,7 @@ public class TransactionDAO {
     private Transaction[] transactions = new Transaction[10];
     private Utils utils = new Utils();
 
+
     public Transaction save(Transaction transaction) throws Exception {
         if (transaction == null)
             throw new NullPointerException("Транзакция равна null");
@@ -95,8 +96,10 @@ public class TransactionDAO {
         }
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
-            if (tr != null)
-                result[index++] = tr;
+            if (tr != null) {
+                result[index] = tr;
+                index++;
+            }
         }
         System.out.println(Arrays.toString(result));
         return result;
@@ -111,8 +114,10 @@ public class TransactionDAO {
         }
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
-            if (tr != null && tr.getCity().equals(city))
-                result[index++] = tr;
+            if (tr != null && tr.getCity().equals(city)) {
+                result[index] = tr;
+                index++;
+            }
         }
         System.out.println(Arrays.toString(result));
         return result;
@@ -127,8 +132,10 @@ public class TransactionDAO {
         }
         Transaction[] result = new Transaction[i];
         for (Transaction tr : transactions) {
-            if (tr != null && tr.getAmount() == amount)
-                result[index++] = tr;
+            if (tr != null && tr.getAmount() == amount) {
+                result[index] = tr;
+                index++;
+            }
         }
         System.out.println(Arrays.toString(result));
         return result;
