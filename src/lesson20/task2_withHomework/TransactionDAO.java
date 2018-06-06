@@ -79,14 +79,14 @@ public class TransactionDAO {
 
     void checkTransactionCity(Transaction transaction) throws BadRequestException {
         for (String city : utils.getCities()) {
-            if (transaction.getCity().equals(city))
+            if (transaction.getCity() != null && transaction.getCity().equals(city))
                 return;
         }
         throw new BadRequestException("The city in transaction " + transaction.getId() + " can't be chose");
         //System.out.println("done city");
     }
 
-    Transaction[] transactionList() {
+    public Transaction[] transactionList() {
         int i = 0;
         int index = 0;
         for (Transaction tr : transactions) {
@@ -102,7 +102,7 @@ public class TransactionDAO {
         return result;
     }
 
-    Transaction[] transactionList(String city) {
+    public Transaction[] transactionList(String city) {
         int i = 0;
         int index = 0;
         for (Transaction tr : transactions) {
@@ -118,7 +118,7 @@ public class TransactionDAO {
         return result;
     }
 
-    Transaction[] transactionList(int amount) {
+    public Transaction[] transactionList(int amount) {
         int i = 0;
         int index = 0;
         for (Transaction tr : transactions) {

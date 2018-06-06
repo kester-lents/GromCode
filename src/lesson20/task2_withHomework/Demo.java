@@ -19,7 +19,9 @@ public class Demo {
                 TransactionType.INCOME, new Date());
 
         try {
-            trDAO.checkTransactionCity(tr2);
+            trDAO.save(tr2);
+            trDAO.save(tr3);
+            trDAO.transactionList();
 
             System.out.println();
         } catch (Exception e) {
