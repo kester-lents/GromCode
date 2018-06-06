@@ -21,6 +21,7 @@ public class Demo  {
         try {
             trDAO.save(tr2);
             trDAO.save(tr3);
+            trDAO.transactionList();
 
         } catch (Exception e) {
             e.printStackTrace();

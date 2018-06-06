@@ -27,7 +27,6 @@ public class TransactionDAO {
         for (Transaction tr : transactions) {
             if (tr == null) {
                 transactions[index] = transaction;
-                System.out.println("done");
                 return transactions[index];
             } else index++;
         }
@@ -101,7 +100,6 @@ public class TransactionDAO {
                 index++;
             }
         }
-        System.out.println(Arrays.toString(result));
         return result;
     }
 
@@ -119,7 +117,6 @@ public class TransactionDAO {
                 index++;
             }
         }
-        System.out.println(Arrays.toString(result));
         return result;
     }
 
@@ -137,7 +134,6 @@ public class TransactionDAO {
                 index++;
             }
         }
-        System.out.println(Arrays.toString(result));
         return result;
     }
 
