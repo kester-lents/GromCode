@@ -83,7 +83,6 @@ public class TransactionDAO {
                 return;
         }
         throw new BadRequestException("The city in transaction " + transaction.getId() + " can't be chose");
-        //System.out.println("done city");
     }
 
     public Transaction[] transactionList() {
