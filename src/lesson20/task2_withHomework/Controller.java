@@ -8,21 +8,21 @@ public class Controller {
 
     public Transaction save(Transaction transaction) throws Exception {
 
-        return transactionDAO.save(transaction);
+        return TransactionDAO.save(transaction);
     }
 
-    Transaction[] transactionList() throws Exception {
+    public Transaction[] transactionList() throws Exception {
 
-        return transactionDAO.transactionList();
+        return TransactionDAO.transactionList();
     }
 
-    Transaction[] transactionList(String city) throws Exception {
+    public Transaction[] transactionList(String city) throws Exception {
 
-        return transactionDAO.transactionList(city);
+        return TransactionDAO.transactionList(city);
     }
 
-    Transaction[] transactionList(int amount) throws Exception {
+    public Transaction[] transactionList(int amount) throws Exception {
 
-        return transactionDAO.transactionList(amount);
+        return TransactionDAO.transactionList(amount);
     }
 }

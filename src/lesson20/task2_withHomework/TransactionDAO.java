@@ -13,11 +13,9 @@ import java.util.Date;
  */
 public class TransactionDAO {
 
-    private Transaction[] transactions = new Transaction[10];
-    private Utils utils = new Utils();
+    private static Transaction[] transactions = new Transaction[10];
 
-
-    public Transaction save(Transaction transaction) throws Exception {
+    public static Transaction save(Transaction transaction) throws Exception {
         if (transaction == null)
             throw new NullPointerException("Транзакция равна null");
 
@@ -35,7 +33,7 @@ public class TransactionDAO {
 
     }
 
-    private void validate(Transaction transaction) throws Exception {
+    private static void validate(Transaction transaction) throws Exception {
         /*
         если есть дубликаты +
     сумма транзакции больше указанного лимита +
@@ -50,42 +48,42 @@ public class TransactionDAO {
         checkTransactionCity(transaction);
     }
 
-    void findDuplicates(Transaction transaction) throws Exception {
+    private static void findDuplicates(Transaction transaction) throws Exception {
         for (Transaction tr : transactions) {
             if (tr != null && tr.equals(transaction))
                 throw new BadRequestException("transaction " + transaction.getId() + " is already existed in array");
         }
     }
 
-    void checkTransactionAmount(Transaction transaction) throws LimitExceeded {
-        if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
+    private static void checkTransactionAmount(Transaction transaction) throws LimitExceeded {
+        if (transaction.getAmount() > Utils.limitSimpleTransactionAmount)
             throw new LimitExceeded("Transaction limit exceed " + transaction.getId() + " can't be saved");
     }
 
-    void checkTransactionDayAmountAndCount(Transaction transaction) throws LimitExceeded {
+    private static void checkTransactionDayAmountAndCount(Transaction transaction) throws LimitExceeded {
         int sum = 0;
         int count = 0;
         for (Transaction tr : getTransactionsPerDay(transaction.getDateCreated())) {
             sum += tr.getAmount();
             count++;
         }
-        if (sum + transaction.getAmount() > utils.getLimitTransactionsPerDayAmount())
+        if (sum + transaction.getAmount() > Utils.limitTransactionsPerDayAmount)
             throw new LimitExceeded("Transaction limit per day amount exceed " + transaction.getId() + " can't be saved");
 
-        if (count + 1 > utils.getLimitTransactionsPerDayCount())
+        if (count + 1 > Utils.limitTransactionsPerDayCount)
             throw new LimitExceeded("Transaction limit per day count exceed " + transaction.getId() + " can't be saved");
 
     }
 
-    void checkTransactionCity(Transaction transaction) throws BadRequestException {
-        for (String city : utils.getCities()) {
+    private static void checkTransactionCity(Transaction transaction) throws BadRequestException {
+        for (String city : Utils.cities) {
             if (transaction.getCity() != null && transaction.getCity().equals(city))
                 return;
         }
         throw new BadRequestException("The city in transaction " + transaction.getId() + " can't be chose");
     }
 
-    public Transaction[] transactionList() {
+    public static Transaction[] transactionList() {
         int i = 0;
         int index = 0;
         for (Transaction tr : transactions) {
@@ -102,7 +100,7 @@ public class TransactionDAO {
         return result;
     }
 
-    public Transaction[] transactionList(String city) {
+    public static Transaction[] transactionList(String city) {
         int i = 0;
         int index = 0;
         for (Transaction tr : transactions) {
@@ -119,7 +117,7 @@ public class TransactionDAO {
         return result;
     }
 
-    public Transaction[] transactionList(int amount) {
+    public static Transaction[] transactionList(int amount) {
         int i = 0;
         int index = 0;
         for (Transaction tr : transactions) {
@@ -136,7 +134,7 @@ public class TransactionDAO {
         return result;
     }
 
-    private Transaction[] getTransactionsPerDay(Date dateOfCurTransaction) {
+    private static  Transaction[] getTransactionsPerDay(Date dateOfCurTransaction) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dateOfCurTransaction);
 

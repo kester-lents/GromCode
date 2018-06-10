@@ -8,7 +8,6 @@ import java.util.Date;
  */
 public class Demo  {
     public static void main(String[] args) {
-        TransactionDAO trDAO = new TransactionDAO();
         Transaction tr123 = new Transaction(1213455, "i;ohlgi", 40, "for drugs",
                 TransactionType.OUTCOME, new Date());
         Transaction tr1 = new Transaction(121345, null, 34, "for drugs",
@@ -19,9 +18,9 @@ public class Demo  {
                 TransactionType.INCOME, new Date());
 
         try {
-            trDAO.save(tr2);
-            trDAO.save(tr3);
-            trDAO.transactionList();
+            TransactionDAO.save(tr2);
+            TransactionDAO.save(tr3);
+            TransactionDAO.transactionList();
 
         } catch (Exception e) {
             e.printStackTrace();
