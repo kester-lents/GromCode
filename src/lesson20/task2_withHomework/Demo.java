@@ -16,11 +16,10 @@ public class Demo  {
                 TransactionType.OUTCOME, new Date());
         Transaction tr3 = new Transaction(1215, "Kiev", 0, "for drugs",
                 TransactionType.INCOME, new Date());
-
         try {
-            TransactionDAO.save(tr2);
-            TransactionDAO.save(tr3);
-            TransactionDAO.transactionList();
+            Controller.save(tr2);
+           // TransactionDAO.save(tr3);
+            System.out.println(Arrays.toString(Controller.transactionList()));
 
         } catch (Exception e) {
             e.printStackTrace();
