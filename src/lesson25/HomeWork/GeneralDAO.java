@@ -1,8 +1,5 @@
 package lesson25.HomeWork;
 
-import lesson20.task1.exception.BadRequestException;
-import lesson20.task1.exception.InternalServelException;
-
 /**
  * Created by Ruslan on 12.06.2018.
  */
@@ -42,7 +39,7 @@ public class GeneralDAO<T> {
     private void checkDuplicates(T t) throws Exception {
         for (T el : array) {
             if (el != null && el.equals(t)) {
-                throw new BadRequestException("element " + t + " is existed in array");
+                throw new Exception("element " + t + " is existed in array");
             }
         }
     }
@@ -54,7 +51,7 @@ public class GeneralDAO<T> {
                 index++;
         }
         if (index == array.length)
-            throw new InternalServelException("There is no empty cells for saving");
+            throw new Exception("There is no empty cells for saving");
     }
 
     public T[] getAll() {
