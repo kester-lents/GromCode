@@ -11,7 +11,7 @@ public class Main {
                 "GMD", 1500, euBank);
         UkrainianBankSystem ukrainianBankSystem = new UkrainianBankSystem();
         /*ukrainianBankSystem.withdraw(user, 1000);
-        System.out.println(user.getBalance());*/
+        Sys.out.println(user.getBalance());*/
 
         ukrainianBankSystem.fund(user, 11000);
         System.out.println(user.getBalance());

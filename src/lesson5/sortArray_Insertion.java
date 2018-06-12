@@ -10,7 +10,7 @@ public class sortArray_Insertion {
     public static void main(String[] args) {
         int[] array = {5, 3, 10, 2, 0, -10};
         System.out.println(Arrays.toString(sortAscending(array)));
-        //System.out.println(Arrays.toString(sortDescending(array)));
+        //Sys.out.println(Arrays.toString(sortDescending(array)));
     }
 
     public static int[] sortAscending(int[] array) {

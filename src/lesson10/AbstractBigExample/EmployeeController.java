@@ -23,7 +23,7 @@ public class EmployeeController {
                     employee.getBankAccount().setBalance(newBalance);
                 }
 
-                System.out.println("Salary was paid successfully to " + employee.getName() + "employee");
+                Sys.out.println("Salary was paid successfully to " + employee.getName() + "employee");
             }*/
     }
 

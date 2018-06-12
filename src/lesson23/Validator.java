@@ -22,4 +22,5 @@ public final class Validator {
     public int getCheckCount() {
         return checkCount;
     }
+
 }

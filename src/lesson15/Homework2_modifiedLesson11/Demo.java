@@ -33,7 +33,7 @@ public class Demo {
         Controller controller = new Controller(new API[]{googleAPI, tripAdvisorAPI, null});
 
         //test Controller check
-        // System.out.println(Arrays.toString(controller.check(googleAPI,tripAdvisorAPI)));
+        // Sys.out.println(Arrays.toString(controller.check(googleAPI,tripAdvisorAPI)));
         //выводится ли результат +
         //если одна из АПИ налл +
         //если одна из комнат налл+
@@ -42,28 +42,28 @@ public class Demo {
         //выводятся ли резалт по всем имплементациям +
         //если имплементация налл +
         //выполняются ли проверки+
-        //System.out.println(Arrays.toString(controller.requestRooms(45, 5, "SA","L")));
+        //Sys.out.println(Arrays.toString(controller.requestRooms(45, 5, "SA","L")));
 
         //TripAdvisorAPI findRooms
         //выводит ли комнаты +
         //проверка на налл комнаты +
         //соблюдаются ли условия, и ищутся ли персонс в диапазоне +
         //TripAdvisorAPI tripApi = new TripAdvisorAPI(rooms);
-        //System.out.println(Arrays.deepToString(tripApi.findRooms(0,4,"SA","L")));
+        //Sys.out.println(Arrays.deepToString(tripApi.findRooms(0,4,"SA","L")));
 
         //GoogleAPI findRooms
         //выводит ли комнаты +
         //если одна из комнат в массиве налл +
         //соблюдает ли условия +
         //GoogleAPI gooApi = new GoogleAPI(rooms);
-        //System.out.println(Arrays.deepToString(gooApi.findRooms(151,5,"SA","L")));
+        //Sys.out.println(Arrays.deepToString(gooApi.findRooms(151,5,"SA","L")));
 
         //BookingComAPI findRoom
         //выводит ли комнаты +
         //если одна из комнат в массиве налл +
         //находит ли все комнаты, отличающиеся по цене (цена не может быть <0)  +
         // BookingComAPI bookAPI = new BookingComAPI(rooms);
-        //System.out.println(Arrays.deepToString(bookAPI.findRooms(50,5,"SA","L")));
+        //Sys.out.println(Arrays.deepToString(bookAPI.findRooms(50,5,"SA","L")));
         //1. Сначала условия все, кроме цены.
         //2. Цена в диапазоне.
 

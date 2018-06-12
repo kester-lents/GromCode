@@ -11,17 +11,17 @@ public class Demo {
 /*
         File someFile = file1;
 
-        System.out.println(file1.equals(file2));
+        Sys.out.println(file1.equals(file2));
 
-        System.out.println(file1.hashCode());
-        System.out.println(file3.hashCode());
-        System.out.println(file1.equals(file3));
+        Sys.out.println(file1.hashCode());
+        Sys.out.println(file3.hashCode());
+        Sys.out.println(file1.equals(file3));
 
-        System.out.println(file1 == file3);
+        Sys.out.println(file1 == file3);
 
-        System.out.println(file1==someFile);
+        Sys.out.println(file1==someFile);
 
         User user = new User(1001);
-        System.out.println(file1.equals(user));*/
+        Sys.out.println(file1.equals(user));*/
     }
 }
