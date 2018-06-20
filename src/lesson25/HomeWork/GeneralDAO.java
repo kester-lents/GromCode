@@ -4,6 +4,9 @@ package lesson25.HomeWork;
  * Created by Ruslan on 12.06.2018.
  */
 public class GeneralDAO<T> {
+
+    @SuppressWarnings("unchecked")
+    private T[] array = (T[]) new Object[10];
     /*
     Сохранение в базу данных (массив) с проверкой всех случаев.
     1. Проверка на налл.
@@ -11,10 +14,8 @@ public class GeneralDAO<T> {
     3. Если длина массива позволяет.
     4. Запись
     */
-    @SuppressWarnings("unchecked")
-    private T[] array = (T[]) new Object[10];
 
-    T save(T t) throws Exception {
+   public T save(T t) throws Exception {
 
         validate(t);
 
@@ -44,7 +45,7 @@ public class GeneralDAO<T> {
         }
     }
 
-    public void checkEmptySpace(T t) throws Exception {
+    private void checkEmptySpace(T t) throws Exception {
         int index = 0;
         for (T el : array) {
             if (el != null)
