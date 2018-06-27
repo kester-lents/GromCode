@@ -4,17 +4,7 @@ package lesson22.repository;
  * Created by Ruslan on 25.04.2018.
  */
 public class UserRepository {
-   /* User user = new User(1234, "Qwerty", "324");
-    User user2 = new User(1231, "Qwerty", "324");
-    User user3 = new User(100, "Ruslan", "123");
-    User user4 = new User(1235434, "Qwerty", "324");
-    User user5 = new User(1232, "Qwerty546", "324");
-    User user6 = null;
-    User user7 = null;
-    User user8 = new User(1001, "Ruslan", "123");
-    User user9 = null;
-    User user10 = null;*/
-    private static User[] users = new User[10]/*{user, user2, user3, user4, user5, user6, user7, user8, user9, user10}*/;
+   private static User[] users = new User[10];
 
     //User save
     //если входящий юзер налл - тогда налл
