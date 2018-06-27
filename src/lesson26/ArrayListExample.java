@@ -38,6 +38,7 @@ public class ArrayListExample {
         System.out.println(list.toString());
 
         list.set(3,5555);
+
         System.out.println(list.toString());
     }
 }
