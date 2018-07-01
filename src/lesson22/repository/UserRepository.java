@@ -47,16 +47,13 @@ public class UserRepository {
             return;
         int index = 0;
         for (User user : list) {
-            if (user != null) {
-                if (user.getId() == id) {
-                    list.remove(index);
-                    return;
-                }
-                index++;
+            if (user != null && user.getId() == id) {
+                list.remove(index);
+                return;
             }
+            index++;
         }
     }
-
 
     public static User userFindById(long id) {
         if (id == 0)
