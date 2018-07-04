@@ -1,5 +1,7 @@
 package lesson28;
 
+import lesson28.Homework.Capability;
+
 import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
