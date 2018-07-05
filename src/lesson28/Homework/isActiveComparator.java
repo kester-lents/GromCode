@@ -1,7 +1,5 @@
 package lesson28.Homework;
 
-import lesson28.Homework.Capability;
-
 import java.util.Comparator;
 
 /**
