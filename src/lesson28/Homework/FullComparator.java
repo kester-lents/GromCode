@@ -35,7 +35,6 @@ public class FullComparator implements Comparator<Capability> {
             }
         }*/
         return 0;
-
     }
 
   /*  private <T extends Comparable<T>> int compare(T fieldCap1, T fieldCap2) {
