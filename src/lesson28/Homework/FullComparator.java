@@ -14,7 +14,7 @@ public class FullComparator implements Comparator<Capability> {
                 если равно - объекты равны
                 */
 
-      if (o1.getChannelName() == null || o2.getChannelName() == null)
+        if (o1.getChannelName() == null || o2.getChannelName() == null)
             return -1;
         if (o1.getChannelName() != null && o2.getChannelName() != null && !o1.getChannelName().equals(o2.getChannelName()))
             return o1.getChannelName().compareTo(o2.getChannelName());
@@ -29,16 +29,16 @@ public class FullComparator implements Comparator<Capability> {
         if (o2.getDateCreated() != null && o1.getDateCreated() != null && !o2.getDateCreated().equals(o1.getDateCreated()))
             return o2.getDateCreated().compareTo(o1.getDateCreated());
 
-        if (compare(o1.getChannelName(), o2.getChannelName()) == 0) {
+        /*if (compare(o1.getChannelName(), o2.getChannelName()) == 0) {
             if (compare(o1.getFingerprint(), o2.getFingerprint()) == 0) {
                 return compare(o2.getDateCreated(), o1.getDateCreated());
             }
-        }
+        }*/
         return 0;
 
     }
 
-    private <T extends Comparable<T>> int compare(T fieldCap1, T fieldCap2) {
+  /*  private <T extends Comparable<T>> int compare(T fieldCap1, T fieldCap2) {
         if (fieldCap1 == null)
             return (fieldCap2 == null) ? 0 : 1;
         if (fieldCap2 == null)
@@ -47,7 +47,7 @@ public class FullComparator implements Comparator<Capability> {
             return fieldCap1.compareTo(fieldCap2);
 
         return 0;
-    }
+    }*/
 
 
 }

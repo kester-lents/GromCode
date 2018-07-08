@@ -10,10 +10,10 @@ public class DemoComparator {
     public static void main(String[] args) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 
-        Capability capability1 = new Capability(1001, "test4", "Arrr", true, sdf.parse("2007-12-15"));
-        Capability capability2 = new Capability(1005, "test2", "Zrrrr", false, sdf.parse("2010-12-15"));
-        Capability capability3 = new Capability(900, "test3", "Orrrr", true, sdf.parse("2013-12-15"));
-        Capability capability4 = new Capability(900, "test1", "Lrrrr", false, sdf.parse("2008-12-15"));
+        Capability capability1 = new Capability(1001, "ABCD", "Arrr", true, sdf.parse("2007-12-15"));
+        Capability capability2 = new Capability(1005, "Dad", "Zrrrr", false, sdf.parse("2010-12-15"));
+        Capability capability3 = new Capability(900, "Ourd", "Orrrr", true, sdf.parse("2013-12-15"));
+        Capability capability4 = new Capability(900, "jhp=", "Lrrrr", false, sdf.parse("2008-12-15"));
 
 
         ArrayList<Capability> capabilities = new ArrayList<>();
