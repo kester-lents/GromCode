@@ -6,8 +6,6 @@ import java.util.Date;
  * Created by Ruslan on 03.07.2018.
  */
 public class Capability implements Comparable<Capability> {
-    //id: 1001,1005,900
-    //900,1001,1005
     private long id;
     private String channelName;
     private String fingerprint;
@@ -43,6 +41,16 @@ public class Capability implements Comparable<Capability> {
     }
 
     @Override
+    public String toString() {
+        return "Capability{" +
+                "id=" + id +
+                ", channelName='" + channelName + '\'' +
+                ", fingerprint='" + fingerprint + '\'' +
+                ", isActive=" + isActive +
+                ", dateCreated=" + dateCreated +
+                '}';
+    }
+    @Override
     public int compareTo(Capability capability) {
         System.out.println("compareTo is used");
         return (int) (this.id - capability.getId());
@@ -58,15 +66,4 @@ public class Capability implements Comparable<Capability> {
     //before: 1001, 900, 1005
     //step3: 1001 - 900 = 101
     //after: 900, 1001, 1005
-
-    @Override
-    public String toString() {
-        return "Capability{" +
-                "id=" + id +
-                ", channelName='" + channelName + '\'' +
-                ", fingerprint='" + fingerprint + '\'' +
-                ", isActive=" + isActive +
-                ", dateCreated=" + dateCreated +
-                '}';
-    }
 }
